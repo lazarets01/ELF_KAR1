@@ -3,30 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>ELF_KAR Vape Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-    --violet:#7f3cff;
-    --pink:#c77dff;
-    --dark:#0b0616;
-    --glass:rgba(255,255,255,0.08);
-}
-
 *{box-sizing:border-box}
 
 body{
     margin:0;
     font-family:Inter, sans-serif;
-    background:
-      radial-gradient(circle at top, #3a0ca3, #10002b 60%);
+    background:radial-gradient(circle at top, #5a189a, #0b0616 70%);
     color:#fff;
 }
 
-/* ===== HERO ===== */
 .hero{
     text-align:center;
-    padding:80px 20px 60px;
+    padding:90px 20px 60px;
 }
 
 .hero h1{
@@ -39,13 +31,13 @@ body{
 }
 
 .hero p{
-    max-width:720px;
+    max-width:760px;
     margin:20px auto 0;
     font-size:18px;
     opacity:.9;
 }
 
-/* ===== MAIN BUTTONS ===== */
+/* MAIN BUTTONS */
 .main-buttons{
     display:flex;
     justify-content:center;
@@ -57,26 +49,25 @@ body{
     padding:16px 36px;
     font-size:16px;
     border-radius:40px;
-    border:1px solid var(--glass);
-    background:var(--glass);
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.08);
     color:#fff;
     cursor:pointer;
     backdrop-filter:blur(10px);
-    transition:.3s;
 }
 
 .main-buttons button:hover{
-    background:var(--violet);
-    box-shadow:0 0 25px var(--violet);
+    background:#7f3cff;
+    box-shadow:0 0 25px #7f3cff;
 }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
 .content{
     max-width:1000px;
     margin:0 auto 80px;
     padding:30px;
-    background:var(--glass);
-    border-radius:20px;
+    background:rgba(255,255,255,.08);
+    border-radius:22px;
     backdrop-filter:blur(14px);
     display:none;
 }
@@ -88,16 +79,16 @@ body{
 }
 
 .sub-buttons button{
-    padding:12px 26px;
+    padding:12px 28px;
     border-radius:30px;
     border:none;
-    background:#1f1147;
+    background:#240046;
     color:#fff;
     cursor:pointer;
 }
 
 .sub-buttons button:hover{
-    background:var(--pink);
+    background:#c77dff;
 }
 
 .section{
@@ -113,10 +104,11 @@ body{
     margin-bottom:8px;
 }
 
+/* TIP */
 .tip{
     margin-top:30px;
-    padding:20px;
-    border-radius:16px;
+    padding:22px;
+    border-radius:18px;
     background:linear-gradient(135deg,#5a189a,#3c096c);
     display:flex;
     align-items:center;
@@ -126,7 +118,7 @@ body{
 .bottle{
     width:80px;
     height:120px;
-    border-radius:14px;
+    border-radius:16px;
     background:linear-gradient(180deg,#c77dff,#7f3cff);
     position:relative;
 }
@@ -153,29 +145,25 @@ footer{
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
     <h1>ELF_KAR</h1>
     <p>
-        ELF_KAR — це сучасний vape-магазин нового покоління.
-        Найкращі бренди, найнижчі ціни, оригінальна продукція та
-        допомога з вибором для кожного вейпера.
+        ELF_KAR — сучасний vape-магазин нового покоління.
+        Найкращі бренди, найнижчі ціни та допомога з вибором ідеального смаку.
     </p>
 </div>
 
-<!-- MAIN BUTTONS -->
 <div class="main-buttons">
     <button onclick="openBrand('chaser')">CHASER</button>
     <button onclick="openBrand('elf')">ELF_LIQ</button>
     <button onclick="openBrand('phantom')">PHANTOM</button>
 </div>
 
-<!-- CONTENT -->
 <div id="content" class="content">
 
     <div class="sub-buttons">
-        <button onclick="showSection('desc')">Опис</button>
-        <button onclick="showSection('flavors')">Смаки</button>
+        <button onclick="showDesc()">Опис</button>
+        <button onclick="showFlavors()">Смаки</button>
     </div>
 
     <div id="desc" class="section"></div>
@@ -185,62 +173,62 @@ footer{
         <div class="bottle"></div>
         <div>
             <strong>Не знаєш, який смак обрати?</strong><br>
-            Якщо любиш солодке — бери ягідні мікси 🍓<br>
+            Любиш солодке — бери ягідні 🍓<br>
             Хочеш свіжість — ice або мʼяту ❄️<br>
-            Пиши нам — підберемо ідеально під твій девайс 🔥
+            Напиши нам — підберемо ідеально 🔥
         </div>
     </div>
+
 </div>
 
 <footer>© 2025 ELF_KAR Vape Store</footer>
 
 <script>
-const data = {
-    chaser:{
-        desc:"CHASER — насичені сольові рідини з яскравими фруктовими та напійними міксами. Ідеально для POD-систем.",
-        flavors:[
-            "Bubblegum","Triple Berry","Triple Raspberry","Energy Grape",
-            "Pink Lemonade","Forest Mix","Bali","Mojito","Watermelon Lemon"
-        ]
+let currentBrand = "";
+
+const brands = {
+    chaser: {
+        desc: "CHASER — яскраві сольові жижки з фруктовими та напійними міксами для POD-систем.",
+        flavors: ["Bubblegum","Triple Berry","Triple Raspberry","Energy Grape","Pink Lemonade","Bali","Mojito","Watermelon Lemon"]
     },
-    elf:{
-        desc:"ELF_LIQ — рідина від Elf Bar зі смаком одноразок. Максимально чистий та стабільний смак.",
-        flavors:[
-            "Blueberry","Pink Lemonade","Cherry Cola","Sour Apple",
-            "Blue Razz Lemonade","Mango","Strawberry Kiwi","Spearmint"
-        ]
+    elf: {
+        desc: "ELF_LIQ — легендарні смаки одноразок Elf Bar у форматі рідини для заправки.",
+        flavors: ["Blueberry","Pink Lemonade","Cherry Cola","Sour Apple","Blue Razz Lemonade","Mango","Strawberry Kiwi","Spearmint"]
     },
-    phantom:{
-        desc:"PHANTOM — потужні сольові жижки з мʼяким ударом та холодними нотами.",
-        flavors:[
-            "Berry","Blueberry Ice","Cherry Menthol","Currant Ice",
-            "RedBull Ice","Raspberry","Watermelon","Spearmint"
-        ]
+    phantom: {
+        desc: "PHANTOM — потужні сольові рідини з холодними нотами та мʼяким ударом.",
+        flavors: ["Berry","Blueberry Ice","Cherry Menthol","Currant Ice","RedBull Ice","Raspberry","Watermelon","Spearmint"]
     }
 };
 
-let current="";
-
-function openBrand(b){
-    current=b;
-    document.getElementById("content").style.display="block";
-    showSection("desc");
+function openBrand(name){
+    currentBrand = name;
+    document.getElementById("content").style.display = "block";
+    showDesc();
 }
 
-function showSection(sec){
-    document.querySelectorAll(".section").forEach(s=>s.style.display="none");
-    const el=document.getElementById(sec);
-    el.style.display="block";
+function showDesc(){
+    hideAll();
+    const el = document.getElementById("desc");
+    el.style.display = "block";
+    el.innerHTML = "<p>"+brands[currentBrand].desc+"</p>";
+}
 
-    if(sec==="desc"){
-        el.innerHTML="<p>"+data[current].desc+"</p>";
-    }else{
-        el.innerHTML="<div class='flavors'>"+
-            data[current].flavors.map(f=>"<div>• "+f+"</div>").join("")
-            +"</div>";
-    }
+function showFlavors(){
+    hideAll();
+    const el = document.getElementById("flavors");
+    el.style.display = "block";
+    el.innerHTML = brands[currentBrand].flavors
+        .map(f => "<div>• " + f + "</div>")
+        .join("");
+}
+
+function hideAll(){
+    document.getElementById("desc").style.display = "none";
+    document.getElementById("flavors").style.display = "none";
 }
 </script>
 
 </body>
 </html>
+
