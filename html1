@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>ELF_KAR Vape Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --violet:#7f3cff;
+    --pink:#c77dff;
+    --dark:#0b0616;
+    --glass:rgba(255,255,255,0.08);
+}
+
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Inter, sans-serif;
+    background:
+      radial-gradient(circle at top, #3a0ca3, #10002b 60%);
+    color:#fff;
+}
+
+/* ===== HERO ===== */
+.hero{
+    text-align:center;
+    padding:80px 20px 60px;
+}
+
+.hero h1{
+    font-family:Orbitron;
+    font-size:64px;
+    letter-spacing:4px;
+    background:linear-gradient(90deg,#c77dff,#7f3cff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:720px;
+    margin:20px auto 0;
+    font-size:18px;
+    opacity:.9;
+}
+
+/* ===== MAIN BUTTONS ===== */
+.main-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin:40px 0;
+}
+
+.main-buttons button{
+    padding:16px 36px;
+    font-size:16px;
+    border-radius:40px;
+    border:1px solid var(--glass);
+    background:var(--glass);
+    color:#fff;
+    cursor:pointer;
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.main-buttons button:hover{
+    background:var(--violet);
+    box-shadow:0 0 25px var(--violet);
+}
+
+/* ===== CONTENT ===== */
+.content{
+    max-width:1000px;
+    margin:0 auto 80px;
+    padding:30px;
+    background:var(--glass);
+    border-radius:20px;
+    backdrop-filter:blur(14px);
+    display:none;
+}
+
+.sub-buttons{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.sub-buttons button{
+    padding:12px 26px;
+    border-radius:30px;
+    border:none;
+    background:#1f1147;
+    color:#fff;
+    cursor:pointer;
+}
+
+.sub-buttons button:hover{
+    background:var(--pink);
+}
+
+.section{
+    display:none;
+}
+
+.flavors{
+    columns:2;
+    margin-top:15px;
+}
+
+.flavors div{
+    margin-bottom:8px;
+}
+
+.tip{
+    margin-top:30px;
+    padding:20px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#5a189a,#3c096c);
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.bottle{
+    width:80px;
+    height:120px;
+    border-radius:14px;
+    background:linear-gradient(180deg,#c77dff,#7f3cff);
+    position:relative;
+}
+
+.bottle::after{
+    content:"";
+    position:absolute;
+    top:-18px;
+    left:25px;
+    width:30px;
+    height:20px;
+    background:#ddd;
+    border-radius:6px 6px 0 0;
+}
+
+footer{
+    text-align:center;
+    opacity:.6;
+    font-size:13px;
+    padding-bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>ELF_KAR</h1>
+    <p>
+        ELF_KAR — це сучасний vape-магазин нового покоління.
+        Найкращі бренди, найнижчі ціни, оригінальна продукція та
+        допомога з вибором для кожного вейпера.
+    </p>
+</div>
+
+<!-- MAIN BUTTONS -->
+<div class="main-buttons">
+    <button onclick="openBrand('chaser')">CHASER</button>
+    <button onclick="openBrand('elf')">ELF_LIQ</button>
+    <button onclick="openBrand('phantom')">PHANTOM</button>
+</div>
+
+<!-- CONTENT -->
+<div id="content" class="content">
+
+    <div class="sub-buttons">
+        <button onclick="showSection('desc')">Опис</button>
+        <button onclick="showSection('flavors')">Смаки</button>
+    </div>
+
+    <div id="desc" class="section"></div>
+    <div id="flavors" class="section"></div>
+
+    <div class="tip">
+        <div class="bottle"></div>
+        <div>
+            <strong>Не знаєш, який смак обрати?</strong><br>
+            Якщо любиш солодке — бери ягідні мікси 🍓<br>
+            Хочеш свіжість — ice або мʼяту ❄️<br>
+            Пиши нам — підберемо ідеально під твій девайс 🔥
+        </div>
+    </div>
+</div>
+
+<footer>© 2025 ELF_KAR Vape Store</footer>
+
+<script>
+const data = {
+    chaser:{
+        desc:"CHASER — насичені сольові рідини з яскравими фруктовими та напійними міксами. Ідеально для POD-систем.",
+        flavors:[
+            "Bubblegum","Triple Berry","Triple Raspberry","Energy Grape",
+            "Pink Lemonade","Forest Mix","Bali","Mojito","Watermelon Lemon"
+        ]
+    },
+    elf:{
+        desc:"ELF_LIQ — рідина від Elf Bar зі смаком одноразок. Максимально чистий та стабільний смак.",
+        flavors:[
+            "Blueberry","Pink Lemonade","Cherry Cola","Sour Apple",
+            "Blue Razz Lemonade","Mango","Strawberry Kiwi","Spearmint"
+        ]
+    },
+    phantom:{
+        desc:"PHANTOM — потужні сольові жижки з мʼяким ударом та холодними нотами.",
+        flavors:[
+            "Berry","Blueberry Ice","Cherry Menthol","Currant Ice",
+            "RedBull Ice","Raspberry","Watermelon","Spearmint"
+        ]
+    }
+};
+
+let current="";
+
+function openBrand(b){
+    current=b;
+    document.getElementById("content").style.display="block";
+    showSection("desc");
+}
+
+function showSection(sec){
+    document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+    const el=document.getElementById(sec);
+    el.style.display="block";
+
+    if(sec==="desc"){
+        el.innerHTML="<p>"+data[current].desc+"</p>";
+    }else{
+        el.innerHTML="<div class='flavors'>"+
+            data[current].flavors.map(f=>"<div>• "+f+"</div>").join("")
+            +"</div>";
+    }
+}
+</script>
+
+</body>
+</html>
