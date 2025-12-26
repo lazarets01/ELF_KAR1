@@ -31,7 +31,7 @@ body{
 }
 
 .hero p{
-    max-width:760px;
+    max-width:820px;
     margin:20px auto 0;
     font-size:18px;
     opacity:.9;
@@ -53,7 +53,6 @@ body{
     background:rgba(255,255,255,.08);
     color:#fff;
     cursor:pointer;
-    backdrop-filter:blur(10px);
 }
 
 .main-buttons button:hover{
@@ -63,7 +62,7 @@ body{
 
 /* CONTENT */
 .content{
-    max-width:1000px;
+    max-width:1100px;
     margin:0 auto 80px;
     padding:30px;
     background:rgba(255,255,255,.08);
@@ -91,18 +90,14 @@ body{
     background:#c77dff;
 }
 
-.section{
-    display:none;
-}
+.section{display:none}
 
 .flavors{
     columns:2;
     margin-top:15px;
 }
 
-.flavors div{
-    margin-bottom:8px;
-}
+.flavors div{margin-bottom:6px}
 
 /* TIP */
 .tip{
@@ -148,14 +143,14 @@ footer{
 <div class="hero">
     <h1>ELF_KAR</h1>
     <p>
-        ELF_KAR — сучасний vape-магазин нового покоління.
-        Найкращі бренди, найнижчі ціни та допомога з вибором ідеального смаку.
+        ELF_KAR — сучасний vape-магазин нового покоління.<br>
+        Найкращі бренди, найнижчі ціни, оригінальна продукція та допомога з вибором ідеального смаку.
     </p>
 </div>
 
 <div class="main-buttons">
-    <button onclick="openBrand('chaser')">CHASER</button>
     <button onclick="openBrand('elf')">ELF_LIQ</button>
+    <button onclick="openBrand('chaser')">CHASER</button>
     <button onclick="openBrand('phantom')">PHANTOM</button>
 </div>
 
@@ -175,7 +170,7 @@ footer{
             <strong>Не знаєш, який смак обрати?</strong><br>
             Любиш солодке — бери ягідні 🍓<br>
             Хочеш свіжість — ice або мʼяту ❄️<br>
-            Напиши нам — підберемо ідеально 🔥
+            Напиши нам — підберемо ідеально під твій девайс 🔥
         </div>
     </div>
 
@@ -184,25 +179,123 @@ footer{
 <footer>© 2025 ELF_KAR Vape Store</footer>
 
 <script>
-let currentBrand = "";
+let current = "";
 
 const brands = {
-    chaser: {
-        desc: "CHASER — яскраві сольові жижки з фруктовими та напійними міксами для POD-систем.",
-        flavors: ["Bubblegum","Triple Berry","Triple Raspberry","Energy Grape","Pink Lemonade","Bali","Mojito","Watermelon Lemon"]
-    },
-    elf: {
-        desc: "ELF_LIQ — легендарні смаки одноразок Elf Bar у форматі рідини для заправки.",
-        flavors: ["Blueberry","Pink Lemonade","Cherry Cola","Sour Apple","Blue Razz Lemonade","Mango","Strawberry Kiwi","Spearmint"]
-    },
-    phantom: {
-        desc: "PHANTOM — потужні сольові рідини з холодними нотами та мʼяким ударом.",
-        flavors: ["Berry","Blueberry Ice","Cherry Menthol","Currant Ice","RedBull Ice","Raspberry","Watermelon","Spearmint"]
-    }
+
+elf:{
+desc:`
+<b>ELF_LIQ</b> — високоякісна сольова рідина від бренду Elf Bar,
+створена для передачі смаків одноразових Elf Bar у форматі
+рідини для POD та MTL систем.<br><br>
+
+<b>Тип:</b> Nic Salt<br>
+<b>VG/PG:</b> 50/50<br>
+<b>Міцність:</b> 5 mg / 10 mg / 20 mg<br><br>
+
+✔ Яскравий смак<br>
+✔ Мʼякий удар по горлу<br>
+✔ Ідеально для переходу з одноразок
+`,
+flavors:[
+"Elfliq Blueberry",
+"Pink Lemonade",
+"Watermelon",
+"Grape Cherry",
+"Raspberry Lychee",
+"Cherry Cola",
+"Apple Peach",
+"Grape",
+"Cola",
+"Mango",
+"Pink Grapefruit",
+"Lemon Lime",
+"Strawberry Kiwi",
+"Elfturbo Ice",
+"Strawberry Raspberry Cherry Ice",
+"Sour Apple",
+"Snoow Tobacco",
+"Sour Raspberry",
+"Pineapple Mango Orange",
+"Spearmint",
+"Blue Razz Lemonade",
+"Cherry"
+]
+},
+
+chaser:{
+desc:`
+<b>CHASER Black</b> — сольові рідини української лабораторії Chaser Lab
+для POD-систем з насиченим смаком та мʼякою парою.<br><br>
+
+✔ VG/PG 50/50<br>
+✔ Підходить для різних девайсів<br>
+✔ Великий вибір смаків
+`,
+flavors:[
+"Bubblegum",
+"Triple Sour Apple",
+"Triple Berry",
+"Triple Raspberry",
+"Energy Raspberry",
+"Energy Grape",
+"Lemon Mint",
+"Blue Raz Apple",
+"Blackberry Sour Raspberry",
+"Pink Lemonade",
+"Flirt",
+"Forest Mix",
+"Compote",
+"Bali",
+"Bali Triple Shot",
+"Wild Strawberry Kiwi",
+"Strawberry Blueberry",
+"Blackcurrant Peach Apple",
+"Jasmine Razz Tea",
+"Blackcurrant Rose",
+"Watermelon Lemon",
+"Banana Apple (limited)",
+"Peach Lemonade (limited)",
+"Mojito"
+]
+},
+
+phantom:{
+desc:`
+<b>PHANTOM</b> — серія сольових рідин для POD-систем
+з чистим смаком, стабільним ароматом і мʼяким ударом.<br><br>
+
+<b>VG/PG:</b> 50/50<br>
+<b>Нікотин:</b> 50 / 65 mg<br>
+<b>Обʼєм:</b> 30 ml<br><br>
+
+Рекомендації:<br>
+• Фрукти — Berry, Raspberry<br>
+• Свіжість — Ice, Spearmint<br>
+• Енергія — RedBull Ice
+`,
+flavors:[
+"Berry",
+"Blueberry Ice",
+"Cherry",
+"Cherry Menthol",
+"Cider",
+"Currant Ice",
+"Grape",
+"RedBull Ice",
+"Raspberry",
+"Sour Apple",
+"Spearmint",
+"Watermelon",
+"Watermelon Raspberry",
+"Watermelon Spearmint"
+]
+}
+
 };
 
 function openBrand(name){
-    currentBrand = name;
+    current = name;
     document.getElementById("content").style.display = "block";
     showDesc();
 }
@@ -211,24 +304,26 @@ function showDesc(){
     hideAll();
     const el = document.getElementById("desc");
     el.style.display = "block";
-    el.innerHTML = "<p>"+brands[currentBrand].desc+"</p>";
+    el.innerHTML = brands[current].desc;
 }
 
 function showFlavors(){
     hideAll();
     const el = document.getElementById("flavors");
     el.style.display = "block";
-    el.innerHTML = brands[currentBrand].flavors
-        .map(f => "<div>• " + f + "</div>")
-        .join("");
+    el.innerHTML =
+        "<div class='flavors'>" +
+        brands[current].flavors.map(f=>"• "+f).join("<br>") +
+        "</div>";
 }
 
 function hideAll(){
-    document.getElementById("desc").style.display = "none";
-    document.getElementById("flavors").style.display = "none";
+    document.getElementById("desc").style.display="none";
+    document.getElementById("flavors").style.display="none";
 }
 </script>
 
 </body>
 </html>
+
 
