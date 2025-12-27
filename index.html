@@ -259,7 +259,20 @@ ELF_KAR — сучасний магазин рідин для вейпінгу �
 <p>Тут знаходяться всі ваші вибрані товари</p>
 <div id="cartItems"></div>
 
-<button class="order-btn" onclick="orderTelegram()">Замовити в Telegram</button>
+<button onclick="orderTelegram()" style="
+width:100%;
+margin-top:14px;
+padding:16px;
+border:none;
+border-radius:20px;
+background:#7f3cff;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+">
+Замовити
+</button>
+
 </div>
 </div>
 
@@ -289,37 +302,42 @@ flavors:[
 },
 
 chaser:{
-price:280,
+price:230,
 img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-fullDesc:`
-<b>CHASER Black — максимум смаку</b><br><br>
-CHASER — це преміальна серія солевих рідин для тих, хто хоче максимально насичений і яскравий смак.
-Кожна затяжка — це чітка ароматична хвиля без зайвої гіркоти.<br><br>
-Рідина добре підходить для сучасних POD-систем, не «вбиває» картриджі 
-та довго зберігає стабільність смаку.<br><br>
-CHASER обирають ті, хто хоче сильні фруктові мікси, лимонади та освіжаючі поєднання.
+fullDesc: brands.chaser?.fullDesc || `
+<b>CHASER Black</b><br><br>
+Преміальна серія солевих рідин з максимально насиченим смаком.
 `,
 flavors:[
-"Bubblegum","Triple Berry","Energy Grape","Pink Lemonade","Mojito",
-"Wild Strawberry Kiwi","Watermelon Lemon","Peach Lemonade"
+"ENERGY RASPBERRY ⚡️🍓 (2 шт)",
+"BLUEBERRY LEMON 🫐🍋 (1 шт)",
+"STRAWBERRY BLUEBERRY 🍓🫐 (2 шт)",
+"TRIPLE RASPBERRY 🍓🍓🍓 (3 шт)",
+"TRIPLE SOUR APPLE 🍏🍎🍏 (1 шт)",
+"MULTIFRUIT 🍓🍊🍍 (1 шт)"
 ]
 },
 
 phantom:{
-price:300,
+price:230,
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-fullDesc:`
-<b>PHANTOM — холод і удар</b><br><br>
-PHANTOM — це рідина для тих, хто любить відчутний ефект.
-Високий вміст нікотину у поєднанні з холодком дає швидке насичення вже з перших затяжок.<br><br>
-Смаки різкі, яскраві, добре відчуваються навіть на низькій потужності.
-Ідеальний вибір для тих, хто хоче «щоб брало».<br><br>
-PHANTOM — це енергія, холод та насиченість без компромісів.
+fullDesc: brands.phantom?.fullDesc || `
+<b>PHANTOM</b><br><br>
+Сильний холод, швидке насичення та яскраві смаки.
 `,
 flavors:[
-"RedBull Ice","Blueberry Ice","Cherry","Grape","Watermelon","Sour Apple"
+"Cider 🍎 (1 шт)",
+"Spearmint 🌿 (2 шт)",
+"Berry 🍓 (2 шт)",
+"Blueberry Ice 🫐❄️ (1 шт)",
+"Currant Ice 🍇❄️ (2 шт)",
+"Energy ⚡️ (2 шт)",
+"Raspberry 🍇 (2 шт)",
+"Sour Apple 🍏 (1 шт)",
+"Watermelon Spearmint 🍉🌿 (1 шт)"
 ]
 }
+
 };
 
 function openBrand(b){
@@ -368,9 +386,10 @@ name: current.toUpperCase(),
 flavor: selected,
 price: brands[current].price
 });
-total+=brands[current].price;
-cartCount.innerText=cart.length;
+total += brands[current].price;
+cartCount.innerText = cart.length;
 }
+
 
 function toggleCart(){
 const modal=document.getElementById("cartModal");
@@ -393,8 +412,20 @@ ${i.flavor} — ${i.price} грн
 }
 
 function orderTelegram(){
-window.open("https://t.me/Karasi4ek123","_blank");
+let text = "Доброго дня! Хочу замовити:%0A%0A";
+
+cart.forEach((i,idx)=>{
+text += `${idx+1}. ${i.name} — ${i.flavor} — ${i.price} грн%0A`;
+});
+
+text += `%0AРазом: ${total} грн`;
+
+window.open(
+`https://t.me/Karasi4ek123?text=${text}`,
+"_blank"
+);
 }
+
 </script>
 
 </body>
