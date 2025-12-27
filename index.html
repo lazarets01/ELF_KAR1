@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>ELF_KAR Vape Store</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -12,59 +11,143 @@
 *{box-sizing:border-box}
 body{
     margin:0;
-    font-family:Inter, sans-serif;
-    background:radial-gradient(circle at top, #5a189a, #0b0616 70%);
+    font-family:Inter,sans-serif;
+    background:radial-gradient(circle at top,#5a189a,#0b0616 70%);
     color:#fff;
 }
+
+/* CART */
+.cart{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:rgba(0,0,0,.5);
+    padding:12px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    z-index:999;
+    font-size:16px;
+}
+.cart span{font-weight:600;color:#c77dff}
+
+/* HERO */
 .hero{text-align:center;padding:70px 20px 40px;}
-.hero h1{font-family:Orbitron;font-size:56px;letter-spacing:4px;background:linear-gradient(90deg,#c77dff,#7f3cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;}
-.hero p{max-width:820px;margin:10px auto 0;font-size:16px;opacity:.9;}
+.hero h1{
+    font-family:Orbitron;
+    font-size:46px;
+    background:linear-gradient(90deg,#c77dff,#7f3cff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.hero p{font-size:15px;opacity:.9}
 
 /* MAIN BUTTONS */
-.main-buttons{display:flex;justify-content:center;gap:12px;margin:30px 0;flex-wrap:wrap;}
-.main-buttons button{padding:14px 28px;font-size:14px;border-radius:40px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;}
-.main-buttons button:hover{background:#7f3cff;box-shadow:0 0 20px #7f3cff;}
+.main-buttons{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.main-buttons button{
+    padding:18px 40px;
+    font-size:18px;
+    border-radius:40px;
+    border:none;
+    background:#7f3cff;
+    color:#fff;
+}
 
 /* CONTENT */
-.content{max-width:1000px;margin:0 auto 60px;padding:20px;background:rgba(255,255,255,.08);border-radius:20px;backdrop-filter:blur(12px);display:none;}
-.sub-buttons{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;}
-.sub-buttons button{padding:10px 22px;border-radius:25px;border:none;background:#240046;color:#fff;cursor:pointer;}
-.sub-buttons button:hover{background:#c77dff;}
-.section{display:none;}
-
-/* BRAND DISPLAY */
-.brand-display{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;}
-.brand-display img{width:180px;height:auto;border-radius:12px;flex-shrink:0;}
-.brand-text{flex:1;}
-
-/* Flavors */
-.flavors{columns:1; margin-top:10px;}
-.flavors div{margin-bottom:6px;}
-
-/* TIP */
-.tip{margin-top:20px;padding:20px;border-radius:18px;background:linear-gradient(135deg,#5a189a,#3c096c);display:flex;align-items:center;gap:15px;flex-wrap:wrap;}
-.bottle{width:60px;height:90px;border-radius:12px;background:linear-gradient(180deg,#c77dff,#7f3cff);position:relative;flex-shrink:0;}
-.bottle::after{content:"";position:absolute;top:-14px;left:18px;width:24px;height:16px;background:#ddd;border-radius:6px 6px 0 0;}
-.tip-text{flex:1;font-size:14px;}
-
-/* Responsive */
-@media (max-width:600px){
-    .brand-display{flex-direction:column;align-items:center;}
-    .brand-display img{width:70%; max-width:250px;}
-    .hero h1{font-size:42px;}
-    .hero p{font-size:15px;}
+.content{
+    max-width:520px;
+    margin:30px auto;
+    background:rgba(255,255,255,.08);
+    padding:20px;
+    border-radius:20px;
+    display:none;
 }
+
+/* SUB */
+.sub-buttons{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+.sub-buttons button{
+    flex:1;
+    padding:14px;
+    font-size:16px;
+    border-radius:25px;
+    border:none;
+    background:#240046;
+    color:#fff;
+}
+
+/* BRAND */
+.brand-display img{
+    width:100%;
+    border-radius:16px;
+    margin-bottom:15px;
+}
+
+/* FLAVORS */
+.flavor-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.flavor-btn{
+    padding:14px;
+    border-radius:20px;
+    background:#3c096c;
+    text-align:center;
+    cursor:pointer;
+}
+
+/* ADD PANEL */
+.add-panel{
+    margin-top:15px;
+    padding:15px;
+    border-radius:15px;
+    background:#7f3cff;
+    display:none;
+    text-align:center;
+}
+.add-panel button{
+    margin-top:10px;
+    padding:12px 25px;
+    border:none;
+    border-radius:20px;
+    background:#000;
+    color:#fff;
+    font-size:16px;
+}
+
+/* CART LIST */
+.cart-list{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#12001f;
+    padding:20px;
+    display:none;
+    max-height:60vh;
+    overflow:auto;
+}
+.cart-item{font-size:14px;margin-bottom:6px}
+
+footer{text-align:center;font-size:12px;opacity:.5;margin:20px}
 </style>
 </head>
 
 <body>
 
+<div class="cart" onclick="toggleCart()">🛒 <span id="cartCount">0</span></div>
+
 <div class="hero">
     <h1>ELF_KAR</h1>
-    <p>
-        ELF_KAR — сучасний vape-магазин нового покоління.<br>
-        Найкращі бренди, найнижчі ціни, оригінальна продукція та допомога з вибором ідеального смаку.
-    </p>
+    <p>Найкращий vape-магазин • низькі ціни • допомога з вибором</p>
 </div>
 
 <div class="main-buttons">
@@ -80,119 +163,84 @@ body{
         <button onclick="showFlavors()">Смаки</button>
     </div>
 
-    <div id="brandDisplay" class="brand-display">
-        <img id="brandImage" src="" alt="Бренд">
-        <div class="brand-text">
-            <div id="desc" class="section"></div>
-            <div id="flavors" class="section"></div>
-        </div>
-    </div>
+    <img id="brandImage">
+    <div id="desc"></div>
 
-    <div class="tip">
-        <div class="bottle"></div>
-        <div id="tipText" class="tip-text">
-            Натисніть "Опис", щоб отримати рекомендації для цього бренду.
-        </div>
-    </div>
+    <div id="flavors"></div>
 
+    <div id="addPanel" class="add-panel">
+        <div id="selectedFlavor"></div>
+        <button onclick="addToCart()">Додати в кошик</button>
+    </div>
 </div>
 
-<footer>© 2025 ELF_KAR Vape Store</footer>
+<div id="cartList" class="cart-list"></div>
+
+<footer>© 2025 ELF_KAR</footer>
 
 <script>
-let current = "";
+let current="",selectedFlavor="";
+let cart=[];
 
-const brands = {
-
+const brands={
 elf:{
 img:"https://cdn.kalyancity.in.ua/products/posters/elf-liq-30ml-50mg-spearmint.jpg",
-desc:`<b>ELF_LIQ</b> — високоякісна рідина для електронних сигарет (вейп-рідина / vape juice) від бренду Elf Bar, створена для передачі улюблених смакових профілів одноразових Elf Bar у форматі рідини для заправних POD-систем та MTL-дейвісів.<br><br>
-📍 <b>Основні характеристики</b><br>
-💧 Тип: сольова нікотинова рідина (nic salt)<br>
-🔄 Баланс VG/PG: приблизно 50/50<br>
-📏 Міцності: 5 mg, 10 mg, 20 mg<br>
-🌍 Призначення: для POD-систем та стартових vапе-наборів (POD/MTL)<br>
-🍓 Відчуття при використанні: чіткий та насичений смак, м’який удар по горлу, стабільна пара<br>
-📈 Переваги:<br>
-✔ Яскравий смак, схожий на одноразові Elf Bar<br>
-✔ М’яке задоволення нікотину<br>
-✔ Підійде для початківців та тих, хто переходить з одноразових у заправні системи<br>
-✔ Економія грошей та менше відходів<br>
-✔ Багато смакових варіантів<br><br>
-<b>Поради щодо вибору:</b> Любиш ягоди — Berry, Raspberry; освіжаюче — Elfturbo Ice, Spearmint.`,
-flavors:[
-"Elfliq Blueberry","Elf Liq Pink Lemonade","Elf liq Watermelon","Elf Liq Grape Cherry","Elf Liq Raspberry Lychee","Elfliq Cherry Cola","Apple Peach","Grape","Cola","Mango","Pink Grapefruit","Lemon Lime","Strawberry Kiwi","Elfturbo Ice","Strawberry Raspberry Cherry Ice","Sour Apple","Snoow Tobacco","Sour Raspberry","Pineapple Mango Orange","Spearmint","Blue Razz Lemonade","Cherry"]
+desc:"<b>ELF_LIQ</b> — сольова рідина з яскравими смаками Elf Bar.",
+flavors:["Blueberry","Pink Lemonade","Watermelon","Spearmint","Sour Apple"]
 },
-
 chaser:{
 img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-desc:`<b>CHASER Black</b> — рідини для електронних сигарет та POD-систем, виготовлені українською лабораторією Chaser Lab.<br><br>
-🍇 Смакові профілі: фруктові мікси (Bali, Blackberry Sour Raspberry), ягідні (Triple Berry, Triple Raspberry), напої/коктейлі (Pink Lemonade, Energy Grape), класичні солодкі (Bubblegum)<br><br>
-✔ Переваги:<br>
-✔ Великий вибір смаків<br>
-✔ Насичений смак та м’яка пара<br>
-✔ Підходить для різних девайсів<br><br>
-<b>Поради щодо вибору:</b> Любиш легкі фруктові — Bali; екзотичні — Flirt, Compote.`,
-flavors:[
-"Bubblegum","Triple Sour Apple","Triple Berry","Triple Raspberry","Energy Raspberry","Energy Grape","Lemon Mint","Blue Raz Apple","Blackberry Sour Raspberry","Pink Lemonade","Flirt","Forest Mix","Compote","Bali","Bali Triple Shot","Wild Strawberry Kiwi","Strawberry Blueberry","Blackcurrant Peach Apple","Jasmine Razz Tea","Blackcurrant Rose","Watermelon Lemon","Banana Apple (лімітований)","Peach Lemonade (лімітований)","Mojito"]
+desc:"<b>CHASER Black</b> — українська лабораторія, насичені смаки.",
+flavors:["Bali","Triple Berry","Bubblegum","Pink Lemonade","Mojito"]
 },
-
 phantom:{
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-desc:`<b>PHANTOM</b> — серія сольових рідин для заправки POD-систем та компактних вейп-девайсів.<br><br>
-🧪 Основні характеристики:<br>
-Тип: сольова нікотинова рідина — м’який удар по горлу, швидке насичення<br>
-VG/PG: 50/50<br>
-Нікотин: 50/65 mg<br>
-Об’єм: 30 ml<br><br>
-🌬️ Що чекати при парінні: чіткі фруктові та освіжаючі нотки без «хімії», стабільний аромат, гармонійний об’єм пара<br><br>
-<b>Поради щодо вибору:</b> Класичні фруктові — Berry, Raspberry, Sour Apple; освіжаючі — Blueberry Ice, Currant Ice, Spearmint; енергійні — RedBull Ice.`,
-flavors:[
-"Berry","Blueberry Ice","Cherry","Cherry Menthol","Cider","Currant Ice","Grape","RedBull Ice","Raspberry","Sour Apple","Spearmint","Watermelon","Watermelon Raspberry","Watermelon Spearmint"]
+desc:"<b>PHANTOM</b> — потужні сольові рідини.",
+flavors:["Berry","RedBull Ice","Spearmint","Sour Apple"]
 }
-
 };
 
-function openBrand(name){
-    current = name;
-    document.getElementById("content").style.display = "block";
-    document.getElementById("brandImage").src = brands[current].img;
-    showDesc();
-    updateTip();
+function openBrand(b){
+current=b;
+content.style.display="block";
+brandImage.src=brands[b].img;
+showDesc();
 }
 
 function showDesc(){
-    hideAll();
-    document.getElementById("desc").style.display = "block";
-    document.getElementById("desc").innerHTML = brands[current].desc;
-    updateTip();
+desc.innerHTML=brands[current].desc;
+flavors.innerHTML="";
+addPanel.style.display="none";
 }
 
 function showFlavors(){
-    hideAll();
-    document.getElementById("flavors").style.display = "block";
-    document.getElementById("flavors").innerHTML =
-        "<div class='flavors'>" + brands[current].flavors.map(f=>"• "+f).join("<br>") + "</div>";
-    updateTip();
+desc.innerHTML="";
+flavors.innerHTML="<div class='flavor-grid'>"+
+brands[current].flavors.map(f=>
+`<div class="flavor-btn" onclick="selectFlavor('${f}')">${f}</div>`
+).join("")+"</div>";
 }
 
-function hideAll(){
-    document.getElementById("desc").style.display="none";
-    document.getElementById("flavors").style.display="none";
+function selectFlavor(f){
+selectedFlavor=f;
+selectedFlavorDiv.innerText=f;
+addPanel.style.display="block";
 }
 
-function updateTip(){
-    const tips = {
-        elf:"Не знаєш, який смак обрати? Спробуй ягоди 🍓 або освіжаючі Elfturbo Ice / Spearmint ❄️",
-        chaser:"Не знаєш, який смак обрати? Легкі фруктові — Bali, екзотичні — Flirt, Compote 🍹",
-        phantom:"Не знаєш, який смак обрати? Класичні — Berry / Raspberry, освіжаючі — Ice, Spearmint ❄️, енергійні — RedBull Ice ⚡"
-    };
-    document.getElementById("tipText").innerHTML = tips[current];
+function addToCart(){
+cart.push(current+" — "+selectedFlavor);
+cartCount.innerText=cart.length;
+}
+
+function toggleCart(){
+cartList.style.display=cartList.style.display=="block"?"none":"block";
+cartList.innerHTML="<b>Кошик:</b><br>"+cart.map(i=>"<div class='cart-item'>• "+i+"</div>").join("");
 }
 </script>
 
 </body>
 </html>
+
 
 
 
