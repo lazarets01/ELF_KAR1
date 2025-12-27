@@ -15,213 +15,32 @@ font-family:Inter,sans-serif;
 background:radial-gradient(circle at top,#5a189a,#0b0616 70%);
 color:#fff;
 }
-
-/* CART BUTTON */
-.cart{
-position:fixed;
-top:14px;
-right:14px;
-padding:14px 20px;
-border-radius:30px;
-background:rgba(0,0,0,.6);
-z-index:1000;
-cursor:pointer;
-font-size:16px;
-}
-
-/* HERO */
+.cart{position:fixed;top:14px;right:14px;padding:14px 20px;border-radius:30px;background:rgba(0,0,0,.6);z-index:1000;cursor:pointer;font-size:16px;}
 .hero{text-align:center;padding:55px 15px}
-.hero h1{
-font-family:Orbitron;
-font-size:42px;
-background:linear-gradient(90deg,#c77dff,#7f3cff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-.hero p{
-max-width:620px;
-margin:14px auto 0;
-font-size:14px;
-opacity:.9;
-line-height:1.6;
-}
-
-/* MAIN BUTTONS */
-.main-buttons{
-display:flex;
-gap:12px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:25px;
-}
-.main-buttons button{
-padding:18px 36px;
-border:none;
-border-radius:32px;
-font-size:17px;
-background:#7f3cff;
-color:#fff;
-cursor:pointer;
-}
-
-/* CONTENT */
-.content{
-max-width:620px;
-margin:20px auto;
-background:rgba(255,255,255,.08);
-border-radius:22px;
-padding:18px;
-display:none;
-}
-
-/* SUB BUTTONS */
-.sub-buttons{
-display:flex;
-gap:10px;
-margin-bottom:14px;
-}
-.sub-buttons button{
-flex:1;
-padding:16px;
-border-radius:26px;
-border:none;
-background:#240046;
-color:#fff;
-font-size:15px;
-cursor:pointer;
-}
-
-/* IMAGE */
-.brand-image{
-max-width:140px;
-display:block;
-margin:0 auto 15px;
-transition:.3s;
-}
-.small{
-max-width:85px;
-margin:0 0 10px;
-}
-
-/* DESCRIPTION */
-#desc{
-font-size:14px;
-line-height:1.6;
-opacity:.95;
-}
-
-/* FLAVORS */
-.flavor-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:12px;
-}
-.flavor{
-padding:16px;
-border-radius:20px;
-background:#3c096c;
-cursor:pointer;
-text-align:center;
-font-size:14px;
-}
-.flavor.active{
-background:#c77dff;
-color:#000;
-}
-
-/* ADD BOX */
-.add-box{
-margin-top:16px;
-padding:18px;
-border-radius:20px;
-background:#7f3cff;
-display:none;
-text-align:center;
-}
-.add-box button{
-margin-top:12px;
-padding:14px 30px;
-border:none;
-border-radius:22px;
-background:#000;
-color:#fff;
-font-size:15px;
-cursor:pointer;
-}
-
-/* CART MODAL */
-.cart-modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.75);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:3000;
-}
-.cart-window{
-width:92%;
-max-width:420px;
-background:#12001f;
-border-radius:24px;
-padding:22px;
-max-height:80vh;
-overflow:auto;
-position:relative;
-}
-.cart-window h2{
-margin:0 0 6px;
-font-size:20px;
-color:#c77dff;
-}
-.cart-window p{
-font-size:13px;
-opacity:.8;
-margin-bottom:16px;
-}
-.cart-item{
-padding:12px;
-background:#240046;
-border-radius:16px;
-margin-bottom:8px;
-font-size:14px;
-}
-.order-btn{
-width:100%;
-margin-top:14px;
-padding:16px;
-border:none;
-border-radius:24px;
-background:#c77dff;
-color:#000;
-font-size:16px;
-cursor:pointer;
-}
-.close-cart{
-position:absolute;
-top:14px;
-right:16px;
-font-size:22px;
-cursor:pointer;
-}
-
-.strength-btn{
-margin:6px 6px 0 0;
-padding:10px 18px;
-border:none;
-border-radius:18px;
-background:#240046;
-color:#fff;
-cursor:pointer;
-font-size:14px;
-}
-.strength-btn.active{
-background:#c77dff;
-color:#000;
-}
-
-
+.hero h1{font-family:Orbitron;font-size:42px;background:linear-gradient(90deg,#c77dff,#7f3cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{max-width:620px;margin:14px auto 0;font-size:14px;opacity:.9;line-height:1.6;}
+.main-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:25px;}
+.main-buttons button{padding:18px 36px;border:none;border-radius:32px;font-size:17px;background:#7f3cff;color:#fff;cursor:pointer;}
+.content{max-width:620px;margin:20px auto;background:rgba(255,255,255,.08);border-radius:22px;padding:18px;display:none;}
+.sub-buttons{display:flex;gap:10px;margin-bottom:14px;}
+.sub-buttons button{flex:1;padding:16px;border-radius:26px;border:none;background:#240046;color:#fff;font-size:15px;cursor:pointer;}
+.brand-image{max-width:140px;display:block;margin:0 auto 15px;transition:.3s;}
+.small{max-width:85px;margin:0 0 10px;}
+#desc{font-size:14px;line-height:1.6;opacity:.95;}
+.flavor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.flavor{padding:16px;border-radius:20px;background:#3c096c;cursor:pointer;text-align:center;font-size:14px;}
+.flavor.active{background:#c77dff;color:#000;}
+.add-box{margin-top:16px;padding:18px;border-radius:20px;background:#7f3cff;display:none;text-align:center;}
+.add-box button{margin-top:12px;padding:14px 30px;border:none;border-radius:22px;background:#000;color:#fff;font-size:15px;cursor:pointer;}
+.cart-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:3000;}
+.cart-window{width:92%;max-width:420px;background:#12001f;border-radius:24px;padding:22px;max-height:80vh;overflow:auto;position:relative;}
+.cart-window h2{margin:0 0 6px;font-size:20px;color:#c77dff;}
+.cart-window p{font-size:13px;opacity:.8;margin-bottom:16px;}
+.cart-item{padding:12px;background:#240046;border-radius:16px;margin-bottom:8px;font-size:14px;}
+.order-btn{width:100%;margin-top:14px;padding:16px;border:none;border-radius:20px;background:#7f3cff;color:#fff;font-size:16px;cursor:pointer;}
+.close-cart{position:absolute;top:14px;right:16px;font-size:22px;cursor:pointer;}
+.strength-btn{margin:6px 6px 0 0;padding:10px 18px;border:none;border-radius:18px;background:#240046;color:#fff;cursor:pointer;font-size:14px;}
+.strength-btn.active{background:#c77dff;color:#000;}
 footer{text-align:center;font-size:12px;opacity:.6;margin:18px}
 </style>
 </head>
@@ -266,11 +85,13 @@ ELF_KAR — сучасний магазин рідин для вейпінгу �
 
 <div style="margin-top:10px;">
 <b>Міцність:</b><br>
-<button class="strength-btn" onclick="pickStrength(50)">50 mg</button>
-<button class="strength-btn" onclick="pickStrength(65)">65 mg</button>
+<button class="strength-btn" onclick="pickStrength(50,this)">50 mg</button>
+<button class="strength-btn" onclick="pickStrength(65,this)">65 mg</button>
 </div>
 
 <button onclick="addToCart()">Додати в кошик</button>
+</div>
+
 </div>
 
 <!-- CART MODAL -->
@@ -281,20 +102,7 @@ ELF_KAR — сучасний магазин рідин для вейпінгу �
 <p>Тут знаходяться всі ваші вибрані товари</p>
 <div id="cartItems"></div>
 
-<button onclick="orderTelegram()" style="
-width:100%;
-margin-top:14px;
-padding:16px;
-border:none;
-border-radius:20px;
-background:#7f3cff;
-color:#fff;
-font-size:16px;
-cursor:pointer;
-">
-Замовити
-</button>
-
+<button class="order-btn" onclick="orderTelegram()">Замовити</button>
 </div>
 </div>
 
@@ -323,11 +131,10 @@ flavors:[
 "Cherry Cola","Apple Peach","Mango","Spearmint","Sour Apple","Blue Razz Lemonade"
 ]
 },
-
 chaser:{
 price:230,
 img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-fullDesc: brands.chaser?.fullDesc || `
+fullDesc:`
 <b>CHASER Black</b><br><br>
 Преміальна серія солевих рідин з максимально насиченим смаком.
 `,
@@ -340,11 +147,10 @@ flavors:[
 "MULTIFRUIT 🍓🍊🍍 (1 шт)"
 ]
 },
-
 phantom:{
 price:230,
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-fullDesc: brands.phantom?.fullDesc || `
+fullDesc:`
 <b>PHANTOM</b><br><br>
 Сильний холод, швидке насичення та яскраві смаки.
 `,
@@ -360,35 +166,33 @@ flavors:[
 "Watermelon Spearmint 🍉🌿 (1 шт)"
 ]
 }
-
 };
 
-function pickStrength(val){
+function pickStrength(val,btn){
 strength = val;
-document.querySelectorAll(".strength-btn")
-.forEach(b=>b.classList.remove("active"));
-event.target.classList.add("active");
+document.querySelectorAll(".strength-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
 }
 
 function openBrand(b){
 current=b;
-content.style.display="block";
-brandImg.src=brands[b].img;
-brandImg.classList.remove("small");
+document.getElementById("content").style.display="block";
+document.getElementById("brandImg").src = brands[b].img;
+document.getElementById("brandImg").classList.remove("small");
 showDesc();
 }
 
 function showDesc(){
-brandImg.classList.remove("small");
-desc.innerHTML=brands[current].fullDesc;
-flavors.innerHTML="";
-addBox.style.display="none";
+document.getElementById("brandImg").classList.remove("small");
+document.getElementById("desc").innerHTML = brands[current].fullDesc;
+document.getElementById("flavors").innerHTML = "";
+document.getElementById("addBox").style.display="none";
 }
 
 function showFlavors(){
-brandImg.classList.add("small");
-desc.innerHTML="";
-flavors.innerHTML="<div class='flavor-grid'>"+
+document.getElementById("brandImg").classList.add("small");
+document.getElementById("desc").innerHTML="";
+document.getElementById("flavors").innerHTML = "<div class='flavor-grid'>"+
 brands[current].flavors.map(f=>`
 <div class="flavor" onclick="pick('${f}',this)">
 ${f}<br><small>${brands[current].price} грн</small>
@@ -399,52 +203,40 @@ ${f}<br><small>${brands[current].price} грн</small>
 function pick(f,el){
 document.querySelectorAll(".flavor").forEach(x=>x.classList.remove("active"));
 el.classList.add("active");
-
 selected = f;
 strength = null;
-
-document.querySelectorAll(".strength-btn")
-.forEach(b=>b.classList.remove("active"));
-
-selectedText.innerHTML=`
+document.querySelectorAll(".strength-btn").forEach(b=>b.classList.remove("active"));
+document.getElementById("selectedText").innerHTML=`
 <b>${current.toUpperCase()}</b><br>
 Смак: ${f}<br>
 Ціна: <b>${brands[current].price} грн</b>
 `;
-
-addBox.style.display="block";
+document.getElementById("addBox").style.display="block";
 }
-
 
 function addToCart(){
 if(!strength){
 alert("Оберіть міцність 50 або 65 mg");
 return;
 }
-
 cart.push({
 name: current.toUpperCase(),
 flavor: selected,
 strength: strength,
 price: brands[current].price
 });
-
 total += brands[current].price;
-cartCount.innerText = cart.length;
+document.getElementById("cartCount").innerText = cart.length;
 }
-
 
 function toggleCart(){
 const modal=document.getElementById("cartModal");
 const list=document.getElementById("cartItems");
 
-if(modal.style.display==="flex"){
-modal.style.display="none";
-return;
-}
+if(modal.style.display==="flex"){ modal.style.display="none"; return; }
 modal.style.display="flex";
 
-list.innerHTML=cart.length
+list.innerHTML = cart.length
 ? cart.map(i=>`
 <div class="cart-item">
 <b>${i.name}</b><br>
@@ -457,20 +249,14 @@ ${i.price} грн
 }
 
 function orderTelegram(){
+if(cart.length===0){ alert("Кошик порожній!"); return; }
 let text = "Доброго дня! Хочу замовити:%0A%0A";
-
 cart.forEach((i,idx)=>{
-text += `${idx+1}. ${i.name} — ${i.flavor} — ${i.strength} mg — ${i.price} грн;
+text += `${idx+1}. ${i.name} — ${i.flavor} — ${i.strength} mg — ${i.price} грн%0A`;
 });
-
 text += `%0AРазом: ${total} грн`;
-
-window.open(
-`https://t.me/Karasi4ek123?text=${text}`,
-"_blank"
-);
+window.open(`https://t.me/Karasi4ek123?text=${text}`,"_blank");
 }
-
 </script>
 
 </body>
