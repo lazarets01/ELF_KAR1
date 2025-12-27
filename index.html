@@ -94,6 +94,12 @@ ELF_KAR — сучасний магазин рідин для вейпінгу �
 
 </div>
 
+<div style="margin-top:10px;">
+<b>Кількість:</b>
+<input type="number" id="itemQuantity" value="1" min="1" class="quantity-input">
+</div>
+
+
 <!-- CART MODAL -->
 <div id="cartModal" class="cart-modal">
 <div class="cart-window">
@@ -212,22 +218,29 @@ document.getElementById("selectedText").innerHTML=`
 Ціна: <b>${brands[current].price} грн</b>
 `;
 document.getElementById("addBox").style.display="block";
+addBox.style.display="block";
+scrollToAddBox(); 
 }
 
 function addToCart(){
-if(!strength){
-alert("Оберіть міцність 50 або 65 mg");
-return;
+    if(!strength){
+        alert("Оберіть міцність 50 або 65 mg");
+        return;
+    }
+    let qty = parseInt(document.getElementById("itemQuantity").value) || 1;
+
+    cart.push({
+        name: current.toUpperCase(),
+        flavor: selected,
+        strength: strength,
+        price: brands[current].price,
+        quantity: qty
+    });
+
+    total += brands[current].price * qty;
+    cartCount.innerText = cart.length;
 }
-cart.push({
-name: current.toUpperCase(),
-flavor: selected,
-strength: strength,
-price: brands[current].price
-});
-total += brands[current].price;
-document.getElementById("cartCount").innerText = cart.length;
-}
+
 
 function toggleCart(){
 const modal=document.getElementById("cartModal");
@@ -247,6 +260,12 @@ ${i.price} грн
 `<div class="cart-item"><b>Разом: ${total} грн</b></div>`
 : "<div class='cart-item'>Кошик порожній 🛒</div>";
 }
+
+function scrollToAddBox(){
+    const addBox = document.getElementById("addBox");
+    addBox.scrollIntoView({ behavior: "smooth", block: "end" });
+}
+
 
 function orderTelegram(){
 if(cart.length===0){ alert("Кошик порожній!"); return; }
