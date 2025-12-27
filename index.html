@@ -16,20 +16,21 @@ background:radial-gradient(circle at top,#5a189a,#0b0616 70%);
 color:#fff;
 }
 
-/* CART */
+/* CART BUTTON */
 .cart{
 position:fixed;
-top:15px;
-right:15px;
-padding:12px 18px;
+top:14px;
+right:14px;
+padding:14px 20px;
 border-radius:30px;
 background:rgba(0,0,0,.6);
-z-index:999;
+z-index:1000;
 cursor:pointer;
+font-size:16px;
 }
 
 /* HERO */
-.hero{text-align:center;padding:60px 20px}
+.hero{text-align:center;padding:55px 15px}
 .hero h1{
 font-family:Orbitron;
 font-size:42px;
@@ -39,106 +40,152 @@ background:linear-gradient(90deg,#c77dff,#7f3cff);
 }
 .hero p{opacity:.85;font-size:14px}
 
-/* MAIN */
+/* MAIN BUTTONS */
 .main-buttons{
 display:flex;
-gap:10px;
+gap:12px;
 justify-content:center;
 flex-wrap:wrap;
 }
 .main-buttons button{
-padding:16px 34px;
+padding:18px 36px;
 border:none;
-border-radius:30px;
-font-size:16px;
+border-radius:32px;
+font-size:17px;
 background:#7f3cff;
 color:#fff;
 }
 
 /* CONTENT */
 .content{
-max-width:600px;
+max-width:620px;
 margin:20px auto;
 background:rgba(255,255,255,.08);
-border-radius:20px;
-padding:15px;
+border-radius:22px;
+padding:18px;
 display:none;
 }
 
-/* SUB */
+/* SUB BUTTONS */
 .sub-buttons{
 display:flex;
 gap:10px;
-margin-bottom:10px;
+margin-bottom:14px;
 }
 .sub-buttons button{
 flex:1;
-padding:14px;
-border-radius:25px;
+padding:16px;
+border-radius:26px;
 border:none;
 background:#240046;
 color:#fff;
+font-size:15px;
 }
 
 /* IMAGE */
 .brand-image{
-max-width:160px;
-margin:0 auto 15px;
+max-width:140px;
 display:block;
+margin:0 auto 15px;
 transition:.3s;
 }
 .small{
-max-width:90px;
-margin:0;
+max-width:85px;
+margin:0 0 10px;
+}
+
+/* DESCRIPTION */
+#desc{
+font-size:14px;
+line-height:1.55;
+opacity:.9;
 }
 
 /* FLAVORS */
 .flavor-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:10px;
+gap:12px;
+margin-top:12px;
 }
 .flavor{
-padding:12px;
-border-radius:18px;
+padding:14px;
+border-radius:20px;
 background:#3c096c;
 cursor:pointer;
 text-align:center;
+font-size:14px;
 }
-.flavor.active{background:#c77dff;color:#000}
+.flavor.active{
+background:#c77dff;
+color:#000;
+}
 
-/* ADD */
+/* ADD BOX */
 .add-box{
-margin-top:15px;
-padding:15px;
-border-radius:18px;
+margin-top:16px;
+padding:18px;
+border-radius:20px;
 background:#7f3cff;
 display:none;
 text-align:center;
 }
 .add-box button{
-margin-top:10px;
-padding:12px 26px;
+margin-top:12px;
+padding:14px 30px;
 border:none;
-border-radius:20px;
+border-radius:22px;
 background:#000;
 color:#fff;
+font-size:15px;
 }
 
-/* CART LIST */
-.cart-list{
+/* CART MODAL */
+.cart-modal{
 position:fixed;
-bottom:0;left:0;right:0;
-background:#12001f;
-max-height:50vh;
-overflow:auto;
-padding:20px;
+inset:0;
+background:rgba(0,0,0,.75);
 display:none;
+align-items:center;
+justify-content:center;
+z-index:3000;
 }
-.cart-item{font-size:14px;margin-bottom:6px}
+.cart-window{
+width:92%;
+max-width:420px;
+background:#12001f;
+border-radius:24px;
+padding:22px;
+max-height:80vh;
+overflow:auto;
+position:relative;
+}
+.cart-window h2{
+margin:0 0 6px;
+font-size:20px;
+color:#c77dff;
+}
+.cart-window p{
+font-size:13px;
+opacity:.8;
+margin-bottom:16px;
+}
+.cart-item{
+padding:12px;
+background:#240046;
+border-radius:16px;
+margin-bottom:8px;
+font-size:14px;
+}
+.close-cart{
+position:absolute;
+top:14px;
+right:16px;
+font-size:22px;
+cursor:pointer;
+}
 
-footer{text-align:center;font-size:12px;opacity:.6;margin:15px}
+footer{text-align:center;font-size:12px;opacity:.6;margin:18px}
 </style>
 </head>
 
@@ -176,47 +223,44 @@ footer{text-align:center;font-size:12px;opacity:.6;margin:15px}
 
 </div>
 
-<div id="cartList" class="cart-list"></div>
+<!-- CART MODAL -->
+<div id="cartModal" class="cart-modal">
+<div class="cart-window">
+<div class="close-cart" onclick="toggleCart()">✕</div>
+<h2>Ви в кошику ELF_KAR</h2>
+<p>Тут знаходяться всі ваші вибрані товари</p>
+<div id="cartItems"></div>
+</div>
+</div>
 
 <footer>© 2025 ELF_KAR</footer>
 
 <script>
-let current="",selected="";
+let current="", selected="";
 let cart=[];
 
 const brands={
 elf:{
 img:"https://cdn.kalyancity.in.ua/products/posters/elf-liq-30ml-50mg-spearmint.jpg",
-desc:`<b>ELF_LIQ</b> — повний опис, який ти надсилав (nic salt, VG/PG 50/50, всі переваги, рекомендації вибору).`,
+desc:`<b>ELF_LIQ</b><br><br>Nic Salt • VG/PG 50/50<br>Мʼякий удар по горлу, насичений смак, підходить для POD систем. Великий вибір смаків, стабільна якість.`,
 flavors:[
-"Elfliq Blueberry","Pink Lemonade","Watermelon","Grape Cherry","Raspberry Lychee",
-"Cherry Cola","Apple Peach","Grape","Cola","Mango","Pink Grapefruit",
-"Lemon Lime","Strawberry Kiwi","Elfturbo Ice",
-"Strawberry Raspberry Cherry Ice","Sour Apple","Snoow Tobacco",
-"Sour Raspberry","Pineapple Mango Orange","Spearmint",
-"Blue Razz Lemonade","Cherry"
+"Blueberry","Pink Lemonade","Watermelon","Grape Cherry","Raspberry Lychee",
+"Cherry Cola","Apple Peach","Mango","Spearmint","Sour Apple","Blue Razz Lemonade"
 ]
 },
 chaser:{
 img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-desc:`<b>CHASER Black</b> — повний опис з усіма характеристиками, перевагами та рекомендаціями.`,
+desc:`<b>CHASER Black</b><br><br>Преміум смаки, сильна передача аромату, ідеально для POD.`,
 flavors:[
-"Bubblegum","Triple Sour Apple","Triple Berry","Triple Raspberry",
-"Energy Raspberry","Energy Grape","Lemon Mint","Blue Raz Apple",
-"Blackberry Sour Raspberry","Pink Lemonade","Flirt","Forest Mix",
-"Compote","Bali","Bali Triple Shot","Wild Strawberry Kiwi",
-"Strawberry Blueberry","Blackcurrant Peach Apple","Jasmine Razz Tea",
-"Blackcurrant Rose","Watermelon Lemon","Banana Apple","Peach Lemonade","Mojito"
+"Bubblegum","Triple Berry","Energy Grape","Pink Lemonade","Mojito",
+"Wild Strawberry Kiwi","Watermelon Lemon","Peach Lemonade"
 ]
 },
 phantom:{
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-desc:`<b>PHANTOM</b> — повний опис, який ти писав (50/65 mg, рекомендації, відчуття).`,
+desc:`<b>PHANTOM</b><br><br>50–65 mg • Яскравий холодок • Потужне насичення`,
 flavors:[
-"Berry","Blueberry Ice","Cherry","Cherry Menthol","Cider",
-"Currant Ice","Grape","RedBull Ice","Raspberry",
-"Sour Apple","Spearmint","Watermelon",
-"Watermelon Raspberry","Watermelon Spearmint"
+"RedBull Ice","Blueberry Ice","Cherry","Grape","Watermelon","Sour Apple"
 ]
 }
 };
@@ -240,30 +284,42 @@ function showFlavors(){
 brandImg.classList.add("small");
 desc.innerHTML="";
 flavors.innerHTML="<div class='flavor-grid'>"+
-brands[current].flavors.map(f=>`<div class="flavor" onclick="pick('${f}',this)">${f}</div>`).join("")+"</div>";
+brands[current].flavors.map(f=>`<div class="flavor" onclick="pick('${f}',this)">${f}</div>`).join("")+
+"</div>";
 }
 
 function pick(f,el){
 document.querySelectorAll(".flavor").forEach(x=>x.classList.remove("active"));
 el.classList.add("active");
 selected=f;
-selectedText.innerText=f;
+selectedText.innerText=current.toUpperCase()+" — "+f;
 addBox.style.display="block";
 }
 
 function addToCart(){
-cart.push(current+" — "+selected);
+cart.push(current.toUpperCase()+" — "+selected);
 cartCount.innerText=cart.length;
 }
 
 function toggleCart(){
-cartList.style.display=cartList.style.display=="block"?"none":"block";
-cartList.innerHTML="<b>Кошик:</b><br>"+cart.map(i=>"<div class='cart-item'>• "+i+"</div>").join("");
+const modal=document.getElementById("cartModal");
+const list=document.getElementById("cartItems");
+
+if(modal.style.display==="flex"){
+modal.style.display="none";
+return;
+}
+modal.style.display="flex";
+
+list.innerHTML=cart.length
+? cart.map(i=>`<div class="cart-item">• ${i}</div>`).join("")
+: "<div class='cart-item'>Кошик порожній 🛒</div>";
 }
 </script>
 
 </body>
 </html>
+
 
 
 
