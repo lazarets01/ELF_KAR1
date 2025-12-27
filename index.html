@@ -232,122 +232,181 @@ footer{text-align:center;font-size:12px;opacity:.6;margin:18px}
 <footer>© 2025 ELF_KAR</footer>
 
 <script>
-let current="", selected=null;
+let current="", sub="", selected="";
 let cart=[];
 
 const brands={
-elf:{
-img:"https://cdn.kalyancity.in.ua/products/posters/elf-liq-30ml-50mg-spearmint.jpg",
-desc:`<b>ELF_LIQ</b><br><br>Сольова рідина від Elf Bar. VG/PG 50/50. 
-Мʼякий удар по горлу, яскраві фруктові та освіжаючі смаки. 
-Ідеально для POD-систем та переходу з одноразок.`,
-flavors:[
-{name:"Blueberry",price:220},
-{name:"Pink Lemonade",price:220},
-{name:"Watermelon",price:220},
-{name:"Grape Cherry",price:220},
-{name:"Raspberry Lychee",price:220},
-{name:"Cherry Cola",price:220},
-{name:"Spearmint",price:220}
-]
-},
-chaser:{
-img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-desc:`<b>CHASER Black</b><br><br>Українська лабораторія Chaser Lab. 
-VG/PG 50/50. Насичений смак, стабільна подача, ідеально для POD.`,
-flavors:[
-{name:"Bubblegum",price:200},
-{name:"Triple Berry",price:200},
-{name:"Energy Grape",price:200},
-{name:"Pink Lemonade",price:200},
-{name:"Mojito",price:210}
-]
-},
 phantom:{
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-desc:`<b>PHANTOM</b><br><br>Сольові рідини 50–65 mg. 
-Чіткий смак, холодок, швидке насичення. 
-Для компактних POD-девайсів.`,
+desc:`<h3>PHANTOM</h3>
+<p><b>PHANTOM</b> — серія сольових рідин (nic salt) для POD-систем та компактних вейп-девайсів. 
+Акцент на чистий смак, стабільність аромату та м’який удар по горлу.</p>
+
+<b>Характеристики:</b>
+<ul>
+<li>VG/PG: 50/50</li>
+<li>Нікотин: 50 / 65 мг</li>
+<li>Обʼєм: 30 мл</li>
+</ul>
+
+<b>Що чекати:</b>
+<ul>
+<li>Чіткі фруктові та освіжаючі ноти</li>
+<li>Стабільний аромат</li>
+<li>Мʼякий післясмак</li>
+</ul>
+
+<b>Рекомендації:</b>
+<ul>
+<li>Фрукти: Berry, Raspberry, Sour Apple</li>
+<li>Освіжаючі: Blueberry Ice, Spearmint</li>
+<li>Енергія: RedBull Ice</li>
+</ul>`,
 flavors:[
-{name:"RedBull Ice",price:190},
-{name:"Blueberry Ice",price:190},
-{name:"Cherry",price:190},
-{name:"Sour Apple",price:190}
+"Berry","Blueberry Ice","Cherry","Cherry Menthol","Cider","Currant Ice",
+"Grape","RedBull Ice","Raspberry","Sour Apple","Spearmint","Watermelon",
+"Watermelon Raspberry","Watermelon Spearmint"
 ]
+},
+
+elf:{
+img:"https://cdn.kalyancity.in.ua/products/posters/elf-liq-30ml-50mg-spearmint.jpg",
+desc:`<h3>ELF_LIQ</h3>
+<p><b>ELF_LIQ</b> — оригінальна сольова рідина від Elf Bar, що передає смак одноразових девайсів у форматі POD-рідини.</p>
+
+<b>Характеристики:</b>
+<ul>
+<li>Тип: Nic Salt</li>
+<li>VG/PG: 50/50</li>
+<li>Міцність: 5 / 10 / 20 мг</li>
+</ul>
+
+<b>Переваги:</b>
+<ul>
+<li>Яскраві смаки</li>
+<li>Мʼякий удар</li>
+<li>Підходить для новачків</li>
+</ul>`,
+flavors:[
+"Elfliq Blueberry","Pink Lemonade","Watermelon","Grape Cherry",
+"Raspberry Lychee","Cherry Cola","Apple Peach","Grape","Cola",
+"Mango","Pink Grapefruit","Lemon Lime","Strawberry Kiwi","Elfturbo Ice",
+"Strawberry Raspberry Cherry Ice","Sour Apple","Snoow Tobacco",
+"Sour Raspberry","Pineapple Mango Orange","Spearmint",
+"Blue Razz Lemonade","Cherry"
+]
+},
+
+chaser:{
+sub:{
+BLACK:{
+img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
+desc:`<h3>CHASER BLACK</h3>
+<p>Сольова рідина української лабораторії Chaser Lab. 
+Насичений смак, мʼяка пара, ідеально для POD-систем.</p>
+
+<b>VG/PG:</b> 50/50<br>
+<b>Тип:</b> Nic Salt<br><br>
+
+<b>Переваги:</b>
+<ul>
+<li>Великий вибір смаків</li>
+<li>Стабільний аромат</li>
+<li>Мʼякий удар</li>
+</ul>`,
+flavors:[
+"Bubblegum","Triple Sour Apple","Triple Berry","Triple Raspberry",
+"Energy Raspberry","Energy Grape","Lemon Mint","Blue Raz Apple",
+"Blackberry Sour Raspberry","Pink Lemonade","Flirt","Forest Mix",
+"Compote","Bali","Bali Triple Shot","Wild Strawberry Kiwi",
+"Strawberry Blueberry","Blackcurrant Peach Apple","Jasmine Razz Tea",
+"Blackcurrant Rose","Watermelon Lemon","Banana Apple",
+"Peach Lemonade","Mojito"
+]
+},
+MIX:{},
+LUX:{},
+SB:{},
+LIMITED:{}
+}
 }
 };
 
 function openBrand(b){
 current=b;
+sub="";
 content.style.display="block";
+addBox.style.display="none";
+
+if(b==="chaser"){
+desc.innerHTML="<b>Оберіть серію:</b>";
+flavors.innerHTML=`
+<div class="flavor-grid">
+${Object.keys(brands.chaser.sub).map(s=>`
+<div class="flavor" onclick="openSub('${s}')">${s}</div>`).join("")}
+</div>`;
+brandImg.style.display="none";
+}else{
+brandImg.style.display="block";
 brandImg.src=brands[b].img;
 brandImg.classList.remove("small");
 showDesc();
+}
+}
+
+function openSub(s){
+sub=s;
+const data=brands.chaser.sub[s];
+brandImg.style.display="block";
+brandImg.src=data.img;
+brandImg.classList.remove("small");
+desc.innerHTML=data.desc;
+showFlavors();
 }
 
 function showDesc(){
 brandImg.classList.remove("small");
 desc.innerHTML=brands[current].desc;
 flavors.innerHTML="";
-addBox.style.display="none";
 }
 
 function showFlavors(){
 brandImg.classList.add("small");
 desc.innerHTML="";
+const list=sub ? brands.chaser.sub[sub].flavors : brands[current].flavors;
+
 flavors.innerHTML="<div class='flavor-grid'>"+
-brands[current].flavors.map(f=>`
-<div class="flavor" onclick="pick('${f.name}',${f.price},this)">
-${f.name}<br><small>${f.price} грн</small>
-</div>`).join("")+
+list.map(f=>`<div class="flavor" onclick="pick('${f}',this)">${f}</div>`).join("")+
 "</div>";
 }
 
-function pick(name,price,el){
+function pick(f,el){
 document.querySelectorAll(".flavor").forEach(x=>x.classList.remove("active"));
 el.classList.add("active");
-selected={name,price,brand:current};
-selectedText.innerText=`${current.toUpperCase()} — ${name} (${price} грн)`;
+selected=f;
+selectedText.innerText=(sub?sub:current).toUpperCase()+" — "+f;
 addBox.style.display="block";
 }
 
 function addToCart(){
-cart.push(selected);
+cart.push(selectedText.innerText);
 cartCount.innerText=cart.length;
+}
+
+function toggleCart(){
+cartModal.style.display=cartModal.style.display==="flex"?"none":"flex";
+cartItems.innerHTML=cart.length
+? cart.map((i,idx)=>`
+<div class="cart-item">
+${i} <span style="float:right;cursor:pointer" onclick="removeItem(${idx})">❌</span>
+</div>`).join("")
+:"Кошик порожній";
 }
 
 function removeItem(i){
 cart.splice(i,1);
 cartCount.innerText=cart.length;
-	renderCart();
-}
-
-function toggleCart(){
-cartModal.style.display =
-cartModal.style.display==="flex"?"none":"flex";
-renderCart();
-}
-
-function renderCart(){
-let total=cart.reduce((s,i)=>s+i.price,0);
-cartItems.innerHTML = cart.length
-? cart.map((i,idx)=>`
-<div class="cart-item">
-${i.brand.toUpperCase()} — ${i.name} (${i.price} грн)
-<span class="remove" onclick="removeItem(${idx})">❌</span>
-</div>`).join("")
-+ `<hr><b>Разом: ${total} грн</b><br><br>
-<button onclick="orderTG(${total})">Замовити в Telegram</button>`
-: "Кошик порожній 🛒";
-}
-
-function orderTG(total){
-let text="🛒 Замовлення ELF_KAR:%0A";
-cart.forEach(i=>{
-text+=`• ${i.brand.toUpperCase()} — ${i.name} (${i.price} грн)%0A`;
-});
-text+=`%0A💰 Разом: ${total} грн`;
-window.open("https://t.me/YOUR_TELEGRAM_USERNAME?text="+text,"_blank");
+toggleCart(); toggleCart();
 }
 </script>
 
