@@ -10,134 +10,135 @@
 <style>
 *{box-sizing:border-box}
 body{
-    margin:0;
-    font-family:Inter,sans-serif;
-    background:radial-gradient(circle at top,#5a189a,#0b0616 70%);
-    color:#fff;
+margin:0;
+font-family:Inter,sans-serif;
+background:radial-gradient(circle at top,#5a189a,#0b0616 70%);
+color:#fff;
 }
 
 /* CART */
 .cart{
-    position:fixed;
-    top:15px;
-    right:15px;
-    background:rgba(0,0,0,.5);
-    padding:12px 18px;
-    border-radius:30px;
-    cursor:pointer;
-    z-index:999;
-    font-size:16px;
+position:fixed;
+top:15px;
+right:15px;
+padding:12px 18px;
+border-radius:30px;
+background:rgba(0,0,0,.6);
+z-index:999;
+cursor:pointer;
 }
-.cart span{font-weight:600;color:#c77dff}
 
 /* HERO */
-.hero{text-align:center;padding:70px 20px 40px;}
+.hero{text-align:center;padding:60px 20px}
 .hero h1{
-    font-family:Orbitron;
-    font-size:46px;
-    background:linear-gradient(90deg,#c77dff,#7f3cff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+font-family:Orbitron;
+font-size:42px;
+background:linear-gradient(90deg,#c77dff,#7f3cff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
-.hero p{font-size:15px;opacity:.9}
+.hero p{opacity:.85;font-size:14px}
 
-/* MAIN BUTTONS */
+/* MAIN */
 .main-buttons{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    flex-wrap:wrap;
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
 }
 .main-buttons button{
-    padding:18px 40px;
-    font-size:18px;
-    border-radius:40px;
-    border:none;
-    background:#7f3cff;
-    color:#fff;
+padding:16px 34px;
+border:none;
+border-radius:30px;
+font-size:16px;
+background:#7f3cff;
+color:#fff;
 }
 
 /* CONTENT */
 .content{
-    max-width:520px;
-    margin:30px auto;
-    background:rgba(255,255,255,.08);
-    padding:20px;
-    border-radius:20px;
-    display:none;
+max-width:600px;
+margin:20px auto;
+background:rgba(255,255,255,.08);
+border-radius:20px;
+padding:15px;
+display:none;
 }
 
 /* SUB */
 .sub-buttons{
-    display:flex;
-    gap:10px;
-    margin-bottom:15px;
+display:flex;
+gap:10px;
+margin-bottom:10px;
 }
 .sub-buttons button{
-    flex:1;
-    padding:14px;
-    font-size:16px;
-    border-radius:25px;
-    border:none;
-    background:#240046;
-    color:#fff;
+flex:1;
+padding:14px;
+border-radius:25px;
+border:none;
+background:#240046;
+color:#fff;
 }
 
-/* BRAND */
-.brand-display img{
-    width:100%;
-    border-radius:16px;
-    margin-bottom:15px;
+/* IMAGE */
+.brand-image{
+max-width:160px;
+margin:0 auto 15px;
+display:block;
+transition:.3s;
+}
+.small{
+max-width:90px;
+margin:0;
 }
 
 /* FLAVORS */
 .flavor-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:10px;
 }
-.flavor-btn{
-    padding:14px;
-    border-radius:20px;
-    background:#3c096c;
-    text-align:center;
-    cursor:pointer;
+.flavor{
+padding:12px;
+border-radius:18px;
+background:#3c096c;
+cursor:pointer;
+text-align:center;
 }
+.flavor.active{background:#c77dff;color:#000}
 
-/* ADD PANEL */
-.add-panel{
-    margin-top:15px;
-    padding:15px;
-    border-radius:15px;
-    background:#7f3cff;
-    display:none;
-    text-align:center;
+/* ADD */
+.add-box{
+margin-top:15px;
+padding:15px;
+border-radius:18px;
+background:#7f3cff;
+display:none;
+text-align:center;
 }
-.add-panel button{
-    margin-top:10px;
-    padding:12px 25px;
-    border:none;
-    border-radius:20px;
-    background:#000;
-    color:#fff;
-    font-size:16px;
+.add-box button{
+margin-top:10px;
+padding:12px 26px;
+border:none;
+border-radius:20px;
+background:#000;
+color:#fff;
 }
 
 /* CART LIST */
 .cart-list{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:#12001f;
-    padding:20px;
-    display:none;
-    max-height:60vh;
-    overflow:auto;
+position:fixed;
+bottom:0;left:0;right:0;
+background:#12001f;
+max-height:50vh;
+overflow:auto;
+padding:20px;
+display:none;
 }
 .cart-item{font-size:14px;margin-bottom:6px}
 
-footer{text-align:center;font-size:12px;opacity:.5;margin:20px}
+footer{text-align:center;font-size:12px;opacity:.6;margin:15px}
 </style>
 </head>
 
@@ -146,32 +147,33 @@ footer{text-align:center;font-size:12px;opacity:.5;margin:20px}
 <div class="cart" onclick="toggleCart()">🛒 <span id="cartCount">0</span></div>
 
 <div class="hero">
-    <h1>ELF_KAR</h1>
-    <p>Найкращий vape-магазин • низькі ціни • допомога з вибором</p>
+<h1>ELF_KAR</h1>
+<p>Оригінальні рідини • найкращі ціни • допомога з вибором</p>
 </div>
 
 <div class="main-buttons">
-    <button onclick="openBrand('elf')">ELF_LIQ</button>
-    <button onclick="openBrand('chaser')">CHASER</button>
-    <button onclick="openBrand('phantom')">PHANTOM</button>
+<button onclick="openBrand('elf')">ELF_LIQ</button>
+<button onclick="openBrand('chaser')">CHASER</button>
+<button onclick="openBrand('phantom')">PHANTOM</button>
 </div>
 
 <div id="content" class="content">
 
-    <div class="sub-buttons">
-        <button onclick="showDesc()">Опис</button>
-        <button onclick="showFlavors()">Смаки</button>
-    </div>
+<div class="sub-buttons">
+<button onclick="showDesc()">Опис</button>
+<button onclick="showFlavors()">Смаки</button>
+</div>
 
-    <img id="brandImage">
-    <div id="desc"></div>
+<img id="brandImg" class="brand-image">
 
-    <div id="flavors"></div>
+<div id="desc"></div>
+<div id="flavors"></div>
 
-    <div id="addPanel" class="add-panel">
-        <div id="selectedFlavor"></div>
-        <button onclick="addToCart()">Додати в кошик</button>
-    </div>
+<div id="addBox" class="add-box">
+<div id="selectedText"></div>
+<button onclick="addToCart()">Додати в кошик</button>
+</div>
+
 </div>
 
 <div id="cartList" class="cart-list"></div>
@@ -179,56 +181,78 @@ footer{text-align:center;font-size:12px;opacity:.5;margin:20px}
 <footer>© 2025 ELF_KAR</footer>
 
 <script>
-let current="",selectedFlavor="";
+let current="",selected="";
 let cart=[];
 
 const brands={
 elf:{
 img:"https://cdn.kalyancity.in.ua/products/posters/elf-liq-30ml-50mg-spearmint.jpg",
-desc:"<b>ELF_LIQ</b> — сольова рідина з яскравими смаками Elf Bar.",
-flavors:["Blueberry","Pink Lemonade","Watermelon","Spearmint","Sour Apple"]
+desc:`<b>ELF_LIQ</b> — повний опис, який ти надсилав (nic salt, VG/PG 50/50, всі переваги, рекомендації вибору).`,
+flavors:[
+"Elfliq Blueberry","Pink Lemonade","Watermelon","Grape Cherry","Raspberry Lychee",
+"Cherry Cola","Apple Peach","Grape","Cola","Mango","Pink Grapefruit",
+"Lemon Lime","Strawberry Kiwi","Elfturbo Ice",
+"Strawberry Raspberry Cherry Ice","Sour Apple","Snoow Tobacco",
+"Sour Raspberry","Pineapple Mango Orange","Spearmint",
+"Blue Razz Lemonade","Cherry"
+]
 },
 chaser:{
 img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-desc:"<b>CHASER Black</b> — українська лабораторія, насичені смаки.",
-flavors:["Bali","Triple Berry","Bubblegum","Pink Lemonade","Mojito"]
+desc:`<b>CHASER Black</b> — повний опис з усіма характеристиками, перевагами та рекомендаціями.`,
+flavors:[
+"Bubblegum","Triple Sour Apple","Triple Berry","Triple Raspberry",
+"Energy Raspberry","Energy Grape","Lemon Mint","Blue Raz Apple",
+"Blackberry Sour Raspberry","Pink Lemonade","Flirt","Forest Mix",
+"Compote","Bali","Bali Triple Shot","Wild Strawberry Kiwi",
+"Strawberry Blueberry","Blackcurrant Peach Apple","Jasmine Razz Tea",
+"Blackcurrant Rose","Watermelon Lemon","Banana Apple","Peach Lemonade","Mojito"
+]
 },
 phantom:{
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-desc:"<b>PHANTOM</b> — потужні сольові рідини.",
-flavors:["Berry","RedBull Ice","Spearmint","Sour Apple"]
+desc:`<b>PHANTOM</b> — повний опис, який ти писав (50/65 mg, рекомендації, відчуття).`,
+flavors:[
+"Berry","Blueberry Ice","Cherry","Cherry Menthol","Cider",
+"Currant Ice","Grape","RedBull Ice","Raspberry",
+"Sour Apple","Spearmint","Watermelon",
+"Watermelon Raspberry","Watermelon Spearmint"
+]
 }
 };
 
 function openBrand(b){
 current=b;
 content.style.display="block";
-brandImage.src=brands[b].img;
+brandImg.src=brands[b].img;
+brandImg.classList.remove("small");
 showDesc();
 }
 
 function showDesc(){
+brandImg.classList.remove("small");
 desc.innerHTML=brands[current].desc;
 flavors.innerHTML="";
-addPanel.style.display="none";
+addBox.style.display="none";
 }
 
 function showFlavors(){
+brandImg.classList.add("small");
 desc.innerHTML="";
 flavors.innerHTML="<div class='flavor-grid'>"+
-brands[current].flavors.map(f=>
-`<div class="flavor-btn" onclick="selectFlavor('${f}')">${f}</div>`
-).join("")+"</div>";
+brands[current].flavors.map(f=>`<div class="flavor" onclick="pick('${f}',this)">${f}</div>`).join("")+"</div>";
 }
 
-function selectFlavor(f){
-selectedFlavor=f;
-selectedFlavorDiv.innerText=f;
-addPanel.style.display="block";
+function pick(f,el){
+document.querySelectorAll(".flavor").forEach(x=>x.classList.remove("active"));
+el.classList.add("active");
+selected=f;
+selectedText.innerText=f;
+addBox.style.display="block";
 }
 
 function addToCart(){
-cart.push(current+" — "+selectedFlavor);
+cart.push(current+" — "+selected);
 cartCount.innerText=cart.length;
 }
 
@@ -240,6 +264,7 @@ cartList.innerHTML="<b>Кошик:</b><br>"+cart.map(i=>"<div class='cart-item'>
 
 </body>
 </html>
+
 
 
 
