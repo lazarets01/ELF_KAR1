@@ -56,7 +56,7 @@ footer{text-align:center;font-size:12px;opacity:.6;margin:18px}
 ELF_KAR — сучасний магазин рідин для вейпінгу з реально низькими цінами та актуальним асортиментом.
 Ми зібрали популярні солеві рідини для POD-систем із чистим, насиченим смаком і стабільною якістю.<br><br>
 Жодних переплат — тільки вигідні ціни, швидке оформлення замовлення та оперативна доставка.
-Ми працюємо з перевіреною продукцією, щоб ти отримував максимум задоволення від кожної затяжки.<br><br>
+Ми працюємо з перевіреною продукцією, щоб ви отримували максимум задоволення від кожної затяжки.<br><br>
 <b>ELF_KAR — обирай смак. Обирай ціну. Обирай якість.</b>
 </p>
 </div>
@@ -250,15 +250,17 @@ if(modal.style.display==="flex"){ modal.style.display="none"; return; }
 modal.style.display="flex";
 
 list.innerHTML = cart.length
-? cart.map(i=>`
-<div class="cart-item">
-<b>${i.name}</b><br>
-${i.flavor}<br>
-Міцність: <b>${i.strength} mg</b><br>
-${i.price} грн
-</div>`).join("")+
-`<div class="cart-item"><b>Разом: ${total} грн</b></div>`
-: "<div class='cart-item'>Кошик порожній 🛒</div>";
+    ? cart.map((i, idx) => `
+        <div class="cart-item">
+            <b>${i.name}</b><br>
+            ${i.flavor}<br>
+            Міцність: <b>${i.strength} mg</b><br>
+            Кількість: <input type="number" min="1" value="${i.quantity}" onchange="updateQuantity(${idx}, this.value)"> 
+            <br>Ціна: ${i.price * i.quantity} грн
+        </div>`).join('') +
+      `<div class="cart-item"><b>Разом: ${total} грн</b></div>`
+    : "<div class='cart-item'>Кошик порожній 🛒</div>";
+
 }
 
 function scrollToAddBox(){
@@ -276,6 +278,18 @@ text += `${idx+1}. ${i.name} — ${i.flavor} — ${i.strength} mg — ${i.price}
 text += `%0AРазом: ${total} грн`;
 window.open(`https://t.me/Karasi4ek123?text=${text}`,"_blank");
 }
+
+function updateQuantity(index, value) {
+    value = parseInt(value);
+    if(value < 1) value = 1;
+    cart[index].quantity = value;
+
+    // Перерахунок total
+    total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    toggleCart(); // оновлюємо кошик
+}
+
 </script>
 
 </body>
