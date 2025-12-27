@@ -26,7 +26,6 @@ border-radius:30px;
 background:rgba(0,0,0,.6);
 z-index:1000;
 cursor:pointer;
-font-size:16px;
 }
 
 /* HERO */
@@ -79,7 +78,6 @@ border-radius:26px;
 border:none;
 background:#240046;
 color:#fff;
-font-size:15px;
 }
 
 /* IMAGE */
@@ -90,14 +88,14 @@ margin:0 auto 15px;
 transition:.3s;
 }
 .small{
-max-width:85px;
+max-width:80px;
 margin:0 0 10px;
 }
 
 /* DESCRIPTION */
 #desc{
 font-size:14px;
-line-height:1.55;
+line-height:1.6;
 opacity:.9;
 }
 
@@ -116,6 +114,7 @@ cursor:pointer;
 text-align:center;
 font-size:14px;
 }
+.flavor small{opacity:.8}
 .flavor.active{
 background:#c77dff;
 color:#000;
@@ -137,7 +136,6 @@ border:none;
 border-radius:22px;
 background:#000;
 color:#fff;
-font-size:15px;
 }
 
 /* CART MODAL */
@@ -165,17 +163,16 @@ margin:0 0 6px;
 font-size:20px;
 color:#c77dff;
 }
-.cart-window p{
-font-size:13px;
-opacity:.8;
-margin-bottom:16px;
-}
 .cart-item{
 padding:12px;
 background:#240046;
 border-radius:16px;
 margin-bottom:8px;
 font-size:14px;
+}
+.remove{
+float:right;
+cursor:pointer;
 }
 .close-cart{
 position:absolute;
@@ -223,7 +220,6 @@ footer{text-align:center;font-size:12px;opacity:.6;margin:18px}
 
 </div>
 
-<!-- CART MODAL -->
 <div id="cartModal" class="cart-modal">
 <div class="cart-window">
 <div class="close-cart" onclick="toggleCart()">✕</div>
@@ -236,31 +232,47 @@ footer{text-align:center;font-size:12px;opacity:.6;margin:18px}
 <footer>© 2025 ELF_KAR</footer>
 
 <script>
-let current="", selected="";
+let current="", selected=null;
 let cart=[];
 
 const brands={
 elf:{
 img:"https://cdn.kalyancity.in.ua/products/posters/elf-liq-30ml-50mg-spearmint.jpg",
-desc:`<b>ELF_LIQ</b><br><br>Nic Salt • VG/PG 50/50<br>Мʼякий удар по горлу, насичений смак, підходить для POD систем. Великий вибір смаків, стабільна якість.`,
+desc:`<b>ELF_LIQ</b><br><br>Сольова рідина від Elf Bar. VG/PG 50/50. 
+Мʼякий удар по горлу, яскраві фруктові та освіжаючі смаки. 
+Ідеально для POD-систем та переходу з одноразок.`,
 flavors:[
-"Blueberry","Pink Lemonade","Watermelon","Grape Cherry","Raspberry Lychee",
-"Cherry Cola","Apple Peach","Mango","Spearmint","Sour Apple","Blue Razz Lemonade"
+{name:"Blueberry",price:220},
+{name:"Pink Lemonade",price:220},
+{name:"Watermelon",price:220},
+{name:"Grape Cherry",price:220},
+{name:"Raspberry Lychee",price:220},
+{name:"Cherry Cola",price:220},
+{name:"Spearmint",price:220}
 ]
 },
 chaser:{
 img:"https://terra-vape.com.ua/image/cache/catalog/Chaser/Chaser-Speacial-Berry-Salt-30ml/chaser-special-berry-salt-nabory-30ml-mystery-one-1000x1000.jpg",
-desc:`<b>CHASER Black</b><br><br>Преміум смаки, сильна передача аромату, ідеально для POD.`,
+desc:`<b>CHASER Black</b><br><br>Українська лабораторія Chaser Lab. 
+VG/PG 50/50. Насичений смак, стабільна подача, ідеально для POD.`,
 flavors:[
-"Bubblegum","Triple Berry","Energy Grape","Pink Lemonade","Mojito",
-"Wild Strawberry Kiwi","Watermelon Lemon","Peach Lemonade"
+{name:"Bubblegum",price:200},
+{name:"Triple Berry",price:200},
+{name:"Energy Grape",price:200},
+{name:"Pink Lemonade",price:200},
+{name:"Mojito",price:210}
 ]
 },
 phantom:{
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
-desc:`<b>PHANTOM</b><br><br>50–65 mg • Яскравий холодок • Потужне насичення`,
+desc:`<b>PHANTOM</b><br><br>Сольові рідини 50–65 mg. 
+Чіткий смак, холодок, швидке насичення. 
+Для компактних POD-девайсів.`,
 flavors:[
-"RedBull Ice","Blueberry Ice","Cherry","Grape","Watermelon","Sour Apple"
+{name:"RedBull Ice",price:190},
+{name:"Blueberry Ice",price:190},
+{name:"Cherry",price:190},
+{name:"Sour Apple",price:190}
 ]
 }
 };
@@ -284,41 +296,64 @@ function showFlavors(){
 brandImg.classList.add("small");
 desc.innerHTML="";
 flavors.innerHTML="<div class='flavor-grid'>"+
-brands[current].flavors.map(f=>`<div class="flavor" onclick="pick('${f}',this)">${f}</div>`).join("")+
+brands[current].flavors.map(f=>`
+<div class="flavor" onclick="pick('${f.name}',${f.price},this)">
+${f.name}<br><small>${f.price} грн</small>
+</div>`).join("")+
 "</div>";
 }
 
-function pick(f,el){
+function pick(name,price,el){
 document.querySelectorAll(".flavor").forEach(x=>x.classList.remove("active"));
 el.classList.add("active");
-selected=f;
-selectedText.innerText=current.toUpperCase()+" — "+f;
+selected={name,price,brand:current};
+selectedText.innerText=`${current.toUpperCase()} — ${name} (${price} грн)`;
 addBox.style.display="block";
 }
 
 function addToCart(){
-cart.push(current.toUpperCase()+" — "+selected);
+cart.push(selected);
 cartCount.innerText=cart.length;
 }
 
-function toggleCart(){
-const modal=document.getElementById("cartModal");
-const list=document.getElementById("cartItems");
-
-if(modal.style.display==="flex"){
-modal.style.display="none";
-return;
+function removeItem(i){
+cart.splice(i,1);
+cartCount.innerText=cart.length;
+	renderCart();
 }
-modal.style.display="flex";
 
-list.innerHTML=cart.length
-? cart.map(i=>`<div class="cart-item">• ${i}</div>`).join("")
-: "<div class='cart-item'>Кошик порожній 🛒</div>";
+function toggleCart(){
+cartModal.style.display =
+cartModal.style.display==="flex"?"none":"flex";
+renderCart();
+}
+
+function renderCart(){
+let total=cart.reduce((s,i)=>s+i.price,0);
+cartItems.innerHTML = cart.length
+? cart.map((i,idx)=>`
+<div class="cart-item">
+${i.brand.toUpperCase()} — ${i.name} (${i.price} грн)
+<span class="remove" onclick="removeItem(${idx})">❌</span>
+</div>`).join("")
++ `<hr><b>Разом: ${total} грн</b><br><br>
+<button onclick="orderTG(${total})">Замовити в Telegram</button>`
+: "Кошик порожній 🛒";
+}
+
+function orderTG(total){
+let text="🛒 Замовлення ELF_KAR:%0A";
+cart.forEach(i=>{
+text+=`• ${i.brand.toUpperCase()} — ${i.name} (${i.price} грн)%0A`;
+});
+text+=`%0A💰 Разом: ${total} грн`;
+window.open("https://t.me/YOUR_TELEGRAM_USERNAME?text="+text,"_blank");
 }
 </script>
 
 </body>
 </html>
+
 
 
 
