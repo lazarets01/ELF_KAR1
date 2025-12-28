@@ -298,35 +298,43 @@ ELF_KAR — сучасний магазин рідин для вейпінгу �
 
 <div id="content" class="content">
 
-<div class="sub-buttons">
-  <div id="chaserVolumeBox" style="display:none;margin-bottom:14px;">
-      <button onclick="pickChaserVolume(10, this)">10 ml</button>
-      <button onclick="pickChaserVolume(30, this)">30 ml</button>
+  <div class="sub-buttons">
+      <!-- Кнопки об'єму -->
+      <div id="chaserVolumeBox" style="display:none;margin-bottom:14px;">
+          <button onclick="pickChaserVolume(10, this)">10 ml</button>
+          <button onclick="pickChaserVolume(30, this)">30 ml</button>
+      </div>
+
+      <!-- Кнопки серії -->
+      <div id="chaserSeriesBox" style="display:none;margin-bottom:14px;">
+          <button onclick="pickChaserSeries('MIX', this)">MIX</button>
+          <button onclick="pickChaserSeries('BLACK', this)">BLACK</button>
+          <button onclick="pickChaserSeries('LUX', this)">LUX</button>
+          <button onclick="pickChaserSeries('SB', this)">SB</button>
+          <button onclick="pickChaserSeries('LIMITED', this)">LIMITED</button>
+      </div>
+
+      <button onclick="showDesc()">Опис</button>
+      <button onclick="showFlavors()">Смаки</button>
   </div>
 
-  <div id="chaserSeriesBox" style="display:none;margin-bottom:14px;">
-      <button onclick="pickChaserSeries('MIX')">MIX</button>
-      <button onclick="pickChaserSeries('BLACK')">BLACK</button>
-      <button onclick="pickChaserSeries('LUX')">LUX</button>
-      <button onclick="pickChaserSeries('SB')">SB</button>
-      <button onclick="pickChaserSeries('LIMITED')">LIMITED</button>
-  </div>
+  <img id="brandImg" class="brand-image">
+  <div id="desc"></div>
+  <div id="flavors"></div>
 
-  <button onclick="showDesc()">Опис</button>
-  <button onclick="showFlavors()">Смаки</button>
+  <div id="addBox" class="add-box">
+      <div id="selectedText"></div>
+
+      <div style="margin-top:10px;">
+      <b>Міцність:</b><br>
+      <button class="strength-btn" onclick="pickStrength(50,this)">50 mg</button>
+      <button class="strength-btn" onclick="pickStrength(65,this)">65 mg</button>
+      </div>
+
+      <button onclick="addToCart()">Додати в кошик</button>
+  </div>
 </div>
 
-
-<img id="brandImg" class="brand-image">
-
-<div id="desc"></div>
-<div id="flavors"></div>
-
-<div id="addBox" class="add-box">
-
-<div id="selectedText"></div>
-
-<div style="margin-top:10px;">
 <b>Міцність:</b><br>
 <button class="strength-btn" onclick="pickStrength(50,this)">50 mg</button>
 <button class="strength-btn" onclick="pickStrength(65,this)">65 mg</button>
@@ -611,12 +619,13 @@ function updateQuantity(index, value) {
     toggleCart(); // оновлюємо кошик
 } 
     
-function pickChaserSeries(series){
+function pickChaserSeries(series, btn){
     chaserSeries = series;
     document.querySelectorAll("#chaserSeriesBox button")
         .forEach(b=>b.classList.remove("active"));
-    event.target.classList.add("active");
+    btn.classList.add("active");
 }
+
     
 function pickChaserVolume(vol, btn){
     chaserVolume = vol;
@@ -631,6 +640,8 @@ function pickChaserVolume(vol, btn){
         chaserSeries = null;
     }
 }
+
+
 
 
 
