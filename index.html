@@ -299,22 +299,23 @@ ELF_KAR — сучасний магазин рідин для вейпінгу �
 <div id="content" class="content">
 
 <div class="sub-buttons">
-<div id="chaserVolumeBox" style="display:none;margin-bottom:14px;">
-    <button onclick="pickChaserVolume(10)">10 ml</button>
-    <button onclick="pickChaserVolume(30)">30 ml</button>
+  <div id="chaserVolumeBox" style="display:none;margin-bottom:14px;">
+      <button onclick="pickChaserVolume(10, this)">10 ml</button>
+      <button onclick="pickChaserVolume(30, this)">30 ml</button>
+  </div>
+
+  <div id="chaserSeriesBox" style="display:none;margin-bottom:14px;">
+      <button onclick="pickChaserSeries('MIX')">MIX</button>
+      <button onclick="pickChaserSeries('BLACK')">BLACK</button>
+      <button onclick="pickChaserSeries('LUX')">LUX</button>
+      <button onclick="pickChaserSeries('SB')">SB</button>
+      <button onclick="pickChaserSeries('LIMITED')">LIMITED</button>
+  </div>
+
+  <button onclick="showDesc()">Опис</button>
+  <button onclick="showFlavors()">Смаки</button>
 </div>
 
-<div id="chaserSeriesBox" style="display:none;margin-bottom:14px;">
-    <button onclick="pickChaserSeries('MIX')">MIX</button>
-    <button onclick="pickChaserSeries('BLACK')">BLACK</button>
-    <button onclick="pickChaserSeries('LUX')">LUX</button>
-    <button onclick="pickChaserSeries('SB')">SB</button>
-    <button onclick="pickChaserSeries('LIMITED')">LIMITED</button>
-</div>
-
-<button onclick="showDesc()">Опис</button>
-<button onclick="showFlavors()">Смаки</button>
-</div>
 
 <img id="brandImg" class="brand-image">
 
@@ -430,9 +431,14 @@ phantom:{
 price:230,
 img:"https://dartvaper.ua/files/products/red-bull-ice-kopiya.600x600.jpg",
 fullDesc:`
-fullDesc: `
 <b>PHANTOM</b><br><br>
 
+<b>🧪 Що таке PHANTOM</b><br>
+PHANTOM — це серія солевих рідин (nic salt) для POD-систем.<br><br>
+<b>📍 Основні характеристики</b><br>
+💧 Тип: сольова рідина<br>
+🔄 VG/PG: 50/50<br>
+📏 Нікотин: 50 / 65 mg<br><br>
 <b>🧪 Що таке PHANTOM</b><br>
 PHANTOM — це серія солевих рідин (nic salt) для заправки POD-систем та компактних вейп-девайсів,
 розроблена з акцентом на чистий і насичений смак, стабільність аромату та м’який удар по горлу.
@@ -459,17 +465,17 @@ PHANTOM — це серія солевих рідин (nic salt) для запр
 
 <b>PHANTOM — насичений смак, стабільна якість і комфортне паріння щодня.</b>
 
-flavors:[
-"Cider 🍎 ",
-"Spearmint 🌿 ",
-"Berry 🍓",
-"Blueberry Ice 🫐❄️",
-"Currant Ice 🍇❄️ ",
-"Energy ⚡️ ",
-"Raspberry 🍇 ",
-"Sour Apple 🍏 ",
-"Watermelon Spearmint 🍉🌿 "
-]
+   flavors: [
+        "Cider 🍎",
+        "Spearmint 🌿",
+        "Berry 🍓",
+        "Blueberry Ice 🫐❄️",
+        "Currant Ice 🍇❄️",
+        "Energy ⚡️",
+        "Raspberry 🍇",
+        "Sour Apple 🍏",
+        "Watermelon Spearmint 🍉🌿"
+    ]
 }
 };
 
@@ -538,18 +544,19 @@ function addToCart(){
         alert("Оберіть міцність 50 або 65 mg");
         return;
     }
-    let qty = parseInt(document.getElementById("itemQuantity").value) || 1;
+   let qty = 1;
+
 
     cart.push({
-        name: current.toUpperCase(),
-        flavor: selected,
-        strength: strength,
-        price: brands[current].price,
-        quantity: qty
-        series: chaserSeries,
-        volume: chaserVolume,
+    name: current.toUpperCase(),
+    flavor: selected,
+    strength: strength,
+    price: brands[current].price,
+    quantity: qty,
+    series: chaserSeries,
+    volume: chaserVolume
+});
 
-    });
 
     total += brands[current].price * qty;
     cartCount.innerText = cart.length;
@@ -602,16 +609,21 @@ function updateQuantity(index, value) {
     total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     toggleCart(); // оновлюємо кошик
-}
-
-    function pickChaserVolume(vol){
-    chaserVolume = vol;
-
-    document.querySelectorAll("#chaserVolumeBox button")
+} 
+    
+function pickChaserSeries(series){
+    chaserSeries = series;
+    document.querySelectorAll("#chaserSeriesBox button")
         .forEach(b=>b.classList.remove("active"));
     event.target.classList.add("active");
+}
+    
+function pickChaserVolume(vol, btn){
+    chaserVolume = vol;
+    document.querySelectorAll("#chaserVolumeBox button")
+        .forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
 
-    // якщо 30 ml — показуємо серії
     if(vol === 30){
         document.getElementById("chaserSeriesBox").style.display = "block";
     } else {
@@ -619,16 +631,8 @@ function updateQuantity(index, value) {
         chaserSeries = null;
     }
 }
-function pickChaserSeries(series){
-    chaserSeries = series;
 
-    document.querySelectorAll("#chaserSeriesBox button")
-        .forEach(b=>b.classList.remove("active"));
-    event.target.classList.add("active");
 
-    // можна одразу показувати смаки
-    showFlavors();
-}
 
 </script>
 
