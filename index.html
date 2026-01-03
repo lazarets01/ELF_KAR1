@@ -10,7 +10,7 @@
 <style>
 :root{
   --bg:#0b0614;
-  --glass:rgba(150,120,255,0.12);
+  --glass:rgba(155,124,255,.12);
   --accent:#9b7cff;
   --text:#eee;
 }
@@ -18,114 +18,77 @@
 body{
   margin:0;
   font-family:Inter,sans-serif;
-  background:
-    radial-gradient(circle at top,#2a1746,#0b0614 60%);
+  background:radial-gradient(circle at top,#2a1746,#0b0614 60%);
   color:var(--text);
 }
 h1{
   font-family:Orbitron;
-  font-size:64px;
   text-align:center;
   margin-top:120px;
+  font-size:64px;
   letter-spacing:6px;
 }
-p{
-  max-width:900px;
-  margin:40px auto;
-  text-align:center;
-  line-height:1.7;
-  opacity:.9;
-}
-.center{
-  text-align:center;
-}
+p{max-width:900px;margin:30px auto;line-height:1.7;text-align:center}
+.center{text-align:center}
 .btn{
-  padding:14px 26px;
-  margin:8px;
+  padding:12px 22px;
+  margin:6px;
   border-radius:14px;
   border:1px solid rgba(255,255,255,.2);
   background:var(--glass);
-  color:white;
+  color:#fff;
   cursor:pointer;
-  transition:.3s;
+  transition:.25s;
 }
-.btn:hover{
-  background:rgba(155,124,255,.3);
-  transform:translateY(-2px);
-}
-.section{
-  display:none;
-  max-width:1100px;
-  margin:40px auto;
-  padding:20px;
-}
-.flavors{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
+.btn:hover{background:rgba(155,124,255,.35)}
+.section{display:none;max-width:1100px;margin:40px auto}
+.flavors{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.price{font-size:12px;opacity:.8}
+.cart-btn{
+  position:fixed;top:16px;right:16px;
+  width:42px;height:42px;border-radius:50%;
+  background:var(--glass);border:1px solid rgba(255,255,255,.2);
+  cursor:pointer;font-size:20px;
 }
 .cart{
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:rgba(20,10,40,.85);
-  backdrop-filter:blur(10px);
-  border-radius:16px;
-  padding:14px;
-  width:300px;
+  position:fixed;top:70px;right:16px;
+  width:320px;display:none;
+  background:rgba(15,8,35,.95);
+  backdrop-filter:blur(12px);
+  border-radius:16px;padding:14px;
 }
-.cart h3{text-align:center}
 .cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:6px 0;
-  font-size:14px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:14px;margin:6px 0;
 }
-.cart-item input{
-  width:40px;
-}
-.remove{
-  color:red;
-  cursor:pointer;
-}
-.total{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  background:rgba(20,10,40,.85);
-  padding:14px 20px;
-  border-radius:16px;
-}
-img.product{
-  max-width:220px;
-  border-radius:16px;
-  margin-bottom:20px;
-}
+.cart-item input{width:42px}
+.remove{color:red;cursor:pointer}
+.total{margin-top:10px;font-weight:600}
 .order{
-  width:100%;
-  margin-top:10px;
-  background:#9b7cff;
-  border:none;
+  width:100%;margin-top:10px;
+  background:var(--accent);border:none;
 }
+img.product{max-width:220px;border-radius:16px;display:block;margin:20px auto}
+.desc{max-width:900px;margin:20px auto;line-height:1.6}
 </style>
 </head>
 
 <body>
 
-<div class="cart">
-  <h3>🛒 Кошик</h3>
+<button class="cart-btn" onclick="toggleCart()">🛒</button>
+
+<div class="cart" id="cart">
+  <h3>Кошик</h3>
   <div id="cartItems"></div>
+  <div class="total">Сума: <span id="total">0</span> грн</div>
   <button class="btn order" onclick="order()">Замовити</button>
 </div>
-
-<div class="total">Сума: <span id="total">0</span> грн</div>
 
 <h1>ELF_KAR</h1>
 
 <p>
-ELF_KAR — вейп-шоп нового покоління. Ми збираємо топові вейп-девайси, pod-системи, рідини та аксесуари, які реально тримають рівень у 2025 році.  
-Тільки актуальні бренди, чистий смак і стабільна якість без компромісів.<br><br>
+ELF_KAR — вейп-шоп нового покоління. Ми збираємо топові вейп-девайси, pod-системи, рідини та аксесуари, які реально тримають рівень у 2025 році.
+<br><br>
 ELF_KAR — коли ви в темі й обираєте краще.
 </p>
 
@@ -143,24 +106,15 @@ ELF_KAR — коли ви в темі й обираєте краще.
     <button class="btn" onclick="toggle('elfFlavors')">ВКУСИ</button>
   </div>
 
-  <div id="elfDesc" style="display:none;text-align:center">
+  <div id="elfDesc" style="display:none">
     <img class="product" src="https://cdn.kalyancity.in.ua/groups/images/elf-bar-elf-liq-10-ml-5.jpg">
-    <p>ELF_LIQ — сольова рідина Elf Bar для POD-систем. Мʼякий удар, насичений смак, 50/50 VG/PG.</p>
+    <div class="desc">
+      ELF_LIQ — це високоякісна сольова рідина від Elf Bar для POD-систем.
+      Мʼякий удар, швидке насичення, яскраві фруктові смаки.
+    </div>
   </div>
 
-  <div id="elfFlavors" class="flavors">
-    <script>
-      const elfFlavors=[
-      "Blueberry","Pink Lemonade","Watermelon","Grape Cherry","Raspberry Lychee",
-      "Cherry Cola","Apple Peach Grape","Cola","Mango Pink Grapefruit",
-      "Lemon Lime","Strawberry Kiwi","Elfturbo Ice","Strawberry Raspberry",
-      "Cherry Ice","Sour Apple","Sour Raspberry","Pineapple Mango Orange",
-      "Spearmint","Blue Razz Lemonade","Cherry"];
-      elfFlavors.forEach(f=>{
-        document.write(`<button class="btn" onclick="add('${f}','10ml')">${f}</button>`)
-      })
-    </script>
-  </div>
+  <div id="elfFlavors" class="flavors"></div>
 </div>
 
 <!-- PHANTOM -->
@@ -178,22 +132,39 @@ ELF_KAR — коли ви в темі й обираєте краще.
 </div>
 
 <script>
+const elfFlavors=[
+"Blueberry","Pink Lemonade","Watermelon","Grape Cherry","Raspberry Lychee",
+"Cherry Cola","Apple Peach Grape","Cola","Mango Pink Grapefruit",
+"Lemon Lime","Strawberry Kiwi","Elfturbo Ice","Strawberry Raspberry",
+"Cherry Ice","Sour Apple","Sour Raspberry","Pineapple Mango Orange",
+"Spearmint","Blue Razz Lemonade","Cherry"
+];
+
 let cart=[];
+
 function show(id){
   document.querySelectorAll('.section').forEach(s=>s.style.display='none');
   document.getElementById(id).style.display='block';
 }
+
 function toggle(id){
   let e=document.getElementById(id);
   e.style.display=e.style.display==='none'?'block':'none';
 }
+
+function toggleCart(){
+  const c=document.getElementById('cart');
+  c.style.display=c.style.display==='block'?'none':'block';
+}
+
 function add(name,ml){
-  let price=ml==='10ml'?120:250;
+  let price=ml===10?120:250;
   let item=cart.find(i=>i.name===name&&i.ml===ml);
   if(item)item.qty++;
   else cart.push({name,ml,price,qty:1});
   render();
 }
+
 function render(){
   let c=document.getElementById('cartItems');
   c.innerHTML='';
@@ -202,41 +173,48 @@ function render(){
     sum+=i.price*i.qty;
     c.innerHTML+=`
     <div class="cart-item">
-      ${i.name} ${i.ml}
+      ${i.name} ${i.ml}ml
       <input type="number" min="1" value="${i.qty}" onchange="cart[${idx}].qty=this.value;render()">
       <span class="remove" onclick="cart.splice(${idx},1);render()">✖</span>
     </div>`;
   });
   document.getElementById('total').innerText=sum;
 }
+
 function order(){
-  let text="Доброго дня, хочу купити:%0A";
-  cart.forEach(i=>{
-    text+=`${i.name} ${i.ml} x${i.qty}%0A`;
-  });
-  text+=`Сума: ${document.getElementById('total').innerText} грн`;
-  window.open(`https://t.me/Karasi4ek123?text=${text}`,'_blank');
+  let t="Доброго дня, хочу купити:%0A";
+  cart.forEach(i=>t+=`${i.name} ${i.ml}ml x${i.qty}%0A`);
+  t+=`Сума: ${document.getElementById('total').innerText} грн`;
+  window.open(`https://t.me/Karasi4ek123?text=${t}`,'_blank');
 }
+
 function phantom(ml){
   let f=["Berry","Blueberry Ice","Cherry","Cherry Menthol","Cider","Currant Ice","Grape","RedBull Ice","Raspberry","Sour Apple","Spearmint","Watermelon","Watermelon Raspberry","Watermelon Spearmint"];
   let box=document.getElementById('phantomFlavors');
   box.innerHTML='';
-  f.forEach(x=>box.innerHTML+=`<button class="btn" onclick="add('PHANTOM ${x}','${ml}ml')">${x}</button>`);
+  f.forEach(x=>box.innerHTML+=`<button class="btn" onclick="add('PHANTOM ${x}',${ml})">${x}<div class="price">${ml===10?120:250} грн</div></button>`);
 }
+
 function chaser10(){
   let f=["Bubblegum","Triple Sour Apple","Triple Berry","Triple Raspberry","Energy Raspberry","Energy Grape","Lemon Mint","Blue Raz Apple","Pink Lemonade","Mojito"];
   let box=document.getElementById('chaserFlavors');
   box.innerHTML='';
-  f.forEach(x=>box.innerHTML+=`<button class="btn" onclick="add('CHASER ${x}','10ml')">${x}</button>`);
+  f.forEach(x=>box.innerHTML+=`<button class="btn" onclick="add('CHASER ${x}',10)">${x}<div class="price">120 грн</div></button>`);
 }
+
 function chaser30(){
-  let box=document.getElementById('chaserFlavors');
-  box.innerHTML='<p>Оберіть серію: BLACK / LUX / SB / MIX / LIMITED</p>';
+  document.getElementById('chaserFlavors').innerHTML="<p>BLACK / LUX / SB / MIX / LIMITED (далі допиляємо)</p>";
 }
+
+elfFlavors.forEach(f=>{
+  document.getElementById('elfFlavors').innerHTML+=
+  `<button class="btn" onclick="add('ELF_LIQ ${f}',10)">${f}<div class="price">120 грн</div></button>`;
+});
 </script>
 
 </body>
 </html>
+
 
 
 
