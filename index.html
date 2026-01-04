@@ -283,6 +283,8 @@ ul li {
 <script>
 let cart=[];
 const price10=120, price30=250;
+const priceELF = 300;
+
 
 function toggleCart(){document.getElementById('cart').classList.toggle('open')}
 
@@ -389,11 +391,20 @@ document.getElementById('content').innerHTML=`
 </ul>
 </div>`;
 }
+
 function elfFl(){
 document.getElementById('content').innerHTML=`
 <h2>ELF_LIQ — Вкуси</h2>
 <div class="grid">
-${elfFlavors.map(f=>item('ELF_LIQ',f,10)).join('')}
+${elfFlavors.map(f=>`
+<div class="item">
+<b>${f}</b>
+<div class="price">30 ml — 300 грн</div>
+<button class="add" onclick="add('ELF_LIQ ${f} 30ml',300)">
+ДОДАТИ ДО КОШИКА
+</button>
+</div>
+`).join('')}
 </div>`;
 }
 
@@ -533,12 +544,23 @@ document.getElementById('content').innerHTML=`
 <button class="sub" onclick="chaserBrand('LIMITED')">LIMITED</button>
 </div>`;
 }
+
 function chaserBrand(b){
+let price = (b === 'LUX') ? 280 : price30;
+
 document.getElementById('content').innerHTML=`
 <h2>CHASER ${b} 30ml</h2>
-<p><b>Ціна: ${price30} грн</b></p>
+<p><b>Ціна: ${price} грн</b></p>
 <div class="grid">
-${chaser30Flavors[b].map(f=>item('CHASER '+b,f,30)).join('')}
+${chaser30Flavors[b].map(f=>`
+<div class="item">
+<b>${f}</b>
+<div class="price">30 ml — ${price} грн</div>
+<button class="add" onclick="add('CHASER ${b} ${f} 30ml',${price})">
+ДОДАТИ ДО КОШИКА
+</button>
+</div>
+`).join('')}
 </div>`;
 }
 
@@ -613,6 +635,7 @@ const chaser30Flavors = {
 </script>
 </body>
 </html>
+
 
 
 
