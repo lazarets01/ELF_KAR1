@@ -304,6 +304,197 @@ ul li {
     to   { background-position: 200% center; }
 }
 
+/* === GLOW EFFECT FOR ALL BUTTONS === */
+
+button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* ПІДСВІТКА ПРИ НАВЕДЕННІ */
+button:hover {
+    box-shadow:
+        0 0 10px rgba(139, 92, 246, 0.6),
+        0 0 25px rgba(139, 92, 246, 0.5),
+        0 0 45px rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+/* СПАЛАХ ПРИ НАТИСКАННІ */
+button:active {
+    transform: scale(0.95);
+    box-shadow:
+        0 0 15px rgba(192, 132, 252, 0.9), 
+        0 0 40px rgba(139, 92, 246, 0.8),
+        0 0 80px rgba(124, 58, 237, 0.9);
+}
+
+/* ОБВОДКА-НЕОН */
+button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(167, 139, 250, 0.9),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    }
+    50% {
+        box-shadow:
+            0 0 20px rgba(192, 132, 252, 1),
+            0 0 50px rgba(139, 92, 246, 0.9),
+            0 0 90px rgba(124, 58, 237, 1);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+.glow-click {
+    animation: pulseGlow 0.45s ease-out;
+}
+
+/* === NEON GLOW FOR CONTENT SECTION === */
+
+.section {
+    position: relative;
+}
+
+/* Неонова рамка */
+.section::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 24px;
+    pointer-events: none;
+
+    background: linear-gradient(
+        90deg,
+        #a78bfa,
+        #8b5cf6,
+        #7c3aed,
+        #a78bfa
+    );
+    background-size: 300% 300%;
+
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.3s ease;
+}
+
+/* Активна підсвітка */
+.section.glow::before {
+    opacity: 1;
+    animation: sectionGlow 1.2s linear infinite;
+}
+
+@keyframes sectionGlow {
+    0%   { background-position:   0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position:   0% 50%; }
+}
+
+/* СПАЛАХ */
+@keyframes sectionFlash {
+    0% {
+        box-shadow: 0 0 0 rgba(139,92,246,0);
+    }
+    40% {
+        box-shadow:
+            0 0 25px rgba(192,132,252,1),
+            0 0 60px rgba(139,92,246,1),
+            0 0 120px rgba(124,58,237,1);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(139,92,246,0);
+    }
+}
+
+.section.flash {
+    animation: sectionFlash 0.6s ease-out;
+}
+
+/* === HARD FLASH BORDER (100% VISIBLE) === */
+
+.section {
+    border-radius: 22px;
+}
+
+/* Клас блимання */
+.section.flash-border {
+    animation: hardFlash 0.6s linear 2;
+}
+
+@keyframes hardFlash {
+    0% {
+        box-shadow: inset 0 0 0 0 rgba(255,255,255,0);
+    }
+    50% {
+        box-shadow:
+            inset 0 0 0 4px #ffffff,
+            0 0 25px #a78bfa,
+            0 0 60px #8b5cf6;
+    }
+    100% {
+        box-shadow: inset 0 0 0 0 rgba(255,255,255,0);
+    }
+}
+
+/* === FLASH ONCE + STATIC GLOW === */
+
+.section {
+    border-radius: 22px;
+}
+
+/* Короткий спалах */
+.section.flash-once {
+    animation: flashOnce 0.45s ease-out;
+}
+
+/* Постійне світіння */
+.section.glow-static {
+    box-shadow:
+        inset 0 0 0 3px #ffffff,
+        0 0 25px rgba(167,139,250,0.9),
+        0 0 60px rgba(139,92,246,0.8);
+}
+
+/* Анімація спалаху */
+@keyframes flashOnce {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow:
+            inset 0 0 0 4px #ffffff,
+            0 0 35px #c4b5fd,
+            0 0 80px #8b5cf6;
+    }
+    100% {
+        box-shadow:
+            inset 0 0 0 3px #ffffff,
+            0 0 25px rgba(167,139,250,0.9),
+            0 0 60px rgba(139,92,246,0.8);
+    }
+}
+
+
 </style>
 
 </head>
@@ -321,7 +512,7 @@ ul li {
 <main>
 <section class="hero">
 <h1 class="logo-glow">ELF_KAR</h1>
-<p><b>ELF_KAR — коли ви в темі й обираєте краще.</b></p>
+<p><b>ELF_KAR — коли ви в темі й обираєте краще.</b></p
 <div class="buttons">
 <button class="action" onclick="showELF()">ELF_LIQ</button>
 <button class="action" onclick="showChaser()">CHASER</button>
@@ -436,13 +627,12 @@ function order(){
     text += "📩 Надіслано з сайту ELF_KAR";
 
     // ПОВІДОМЛЕННЯ КЛІЄНТУ
-    alert(
+   alert(
         "✅ Дякуємо за замовлення!\n\n" +
         "Натисніть «ГАРАЗД»,\n" +
         "після чого повідомлення відкриється в Telegram.\n\n" +
         "📲 Просто натисніть «Відправити»"
     );
-
 
     // ОЧИСТКА КОШИКА
     cart = [];
@@ -467,7 +657,6 @@ document.getElementById('content').innerHTML=`
 function elfDesc(){
 document.getElementById('content').innerHTML=`
 <h2>ELF_LIQ — Опис</h2>
-<img class="icon" src="https://cdn.kalyancity.in.ua/groups/images/elf-bar-elf-liq-10-ml-5.jpg?width=520">
 <div class="desc">
 <p>
 <b>ELF_LIQ</b> — це високоякісна рідина для електронних сигарет 
@@ -727,6 +916,7 @@ return `<div class="item">
 }
 
 /* DATA */
+
 const elfFlavors = [
   "Strawberry Raspberry Cherry Ice 🍓🫐",
   "Pink Lemonade Soda 🍹",
@@ -766,6 +956,31 @@ const chaser30Flavors = {
     'CHRISTMAS TREE🎄'
   ],
 };
+
+function glowContent() {
+    const c = document.getElementById("content");
+    if (!c) return;
+
+    // скидаємо попередні стани
+    c.classList.remove("flash-once", "glow-static");
+    void c.offsetWidth; // reset animation
+
+    // спалах
+    c.classList.add("flash-once");
+
+    // після спалаху — постійне світіння
+    setTimeout(() => {
+        c.classList.remove("flash-once");
+        c.classList.add("glow-static");
+    }, 450);
+}
+
+document.addEventListener("click", e => {
+    if (e.target.tagName === "BUTTON") {
+        glowContent();
+    }
+});
+
 
 </script>
 </body>
