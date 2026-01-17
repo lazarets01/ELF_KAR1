@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -521,6 +522,20 @@ button:hover::before {
 </div>
 </section>
 
+<section class="section">
+  <h2>🎁 Бонусна система ELF_KAR</h2>
+  <p>
+    За кожне підтверджене замовлення ви отримуєте <b>бонуси</b>
+  </p>
+  <ul>
+    <li>🔹 5% від суми замовлення повертається бонусами</li>
+    <li>🔹 1 бонус = 1 грн знижки</li>
+    <li>🔹 Бонуси можна використати при наступному замовленні</li>
+  </ul>
+  <p style="color:#a78bfa;font-weight:700;">
+    Напишіть у Telegram, щоб використати бонуси 💜
+  </p>
+</section>
 
 
 <section id="content" class="section"></section>
@@ -623,7 +638,11 @@ function order(){
         total += i.price * i.qty;
     });
 
-    text += `\nСума: ${total} грн\n\n`;
+    let bonus = Math.floor(total * 0.05);
+
+    text += `\nСума: ${total} грн`;
+    text += `\n🎁 Бонуси за замовлення: ${bonus} грн\n\n`;
+
     text += "📩 Надіслано з сайту ELF_KAR";
 
     // ПОВІДОМЛЕННЯ КЛІЄНТУ
@@ -740,6 +759,7 @@ ${elfFlavors.map(f=>`
 function showPhantom(){
 document.getElementById('content').innerHTML=`
 <h2>PHANTOM</h2>
+<p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
 <div class="buttons">
 <button class="sub" onclick="phantomDesc()">ОПИС</button>
 <button class="sub" onclick="phantom(10)">10 ml</button>
@@ -901,8 +921,12 @@ document.getElementById('content').innerHTML=`
 <h2>КАРТРИДЖІ</h2>
 <div class="item">
 <b>VAPORESSO XROS</b>
+<p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
 <div class="price">2 ml · 0.6Ω · 120 грн</div>
 <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',120)">ДОДАТИ ДО КОШИКА</button>
+<div class="price">3 ml · 0.4Ω · 120 грн</div>
+<button class="add" onclick="add('VAPORESSO XROS 3ml 0.4Ω',120)">ДОДАТИ ДО КОШИКА</button>
+
 </div>`;
 }
 
@@ -918,22 +942,19 @@ return `<div class="item">
 /* DATA */
 
 const elfFlavors = [
-  "Strawberry Raspberry Cherry Ice 🍓🫐",
   "Pink Lemonade Soda 🍹",
   "ELF Jack ⚡",
   "Lemon Lime 🍋🍈",
-  "Watermelon 🍉"
+  "Watermelon🍉"
 ];
 
 const chaser30Flavors = {
   BLACK: [
     "SHERBET 🍫🍭🆕",
-    "BALI 🏝",
     "PINK LEMONADE 💗",
   ],
   LUX: [
     "BERRY NEEDLES 🌲🫐",
-    "ENERGETIC ⚡️🥤",
     "PEACH TEA 🍑🍵",
     "STRAWBERRY CREAM 🍓🍦",
   ],
@@ -977,7 +998,6 @@ document.addEventListener("click", e => {
 </script>
 </body>
 </html>
-
 
 
 
