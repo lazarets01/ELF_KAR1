@@ -495,6 +495,18 @@ button:hover::before {
     }
 }
 
+.back-btn{
+    width:100%;
+    margin-bottom:12px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:14px;
+    padding:10px;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
 
 </style>
 
@@ -522,8 +534,9 @@ button:hover::before {
 </div>
 </section>
 
-<section class="section">
+<section class="section" id="bonusSection">
   <h2>🎁 Бонусна система ELF_KAR</h2>
+
   <p>
     За кожне підтверджене замовлення ви отримуєте <b>бонуси</b>
   </p>
@@ -539,6 +552,8 @@ button:hover::before {
 
 
 <section id="content" class="section"></section>
+
+
 <section class="section about">
     <h2>ЩО ЦЕ ЗА МАГАЗИН ELF_KAR ?</h2>
 
@@ -675,6 +690,7 @@ document.getElementById('content').innerHTML=`
 }
 function elfDesc(){
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>ELF_LIQ — Опис</h2>
 <div class="desc">
 <p>
@@ -740,6 +756,7 @@ document.getElementById('content').innerHTML=`
 
 function elfFl(){
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>ELF_LIQ</h2>
 <h2>оберіть смак</h2>
 <div class="grid">
@@ -762,13 +779,12 @@ document.getElementById('content').innerHTML=`
 <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
 <div class="buttons">
 <button class="sub" onclick="phantomDesc()">ОПИС</button>
-<button class="sub" onclick="phantom(10)">10 ml</button>
-<button class="sub" onclick="phantom(30)">30 ml</button>
 </div>`;
 }
 function phantomDesc(){
 document.getElementById('content').innerHTML=`
 <h2>PHANTOM — Опис</h2>
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <div class="desc">
 
 <p> <b>🧪 Що таке PHANTOM </b> </p>
@@ -818,6 +834,7 @@ document.getElementById('content').innerHTML=`
 }
 function chaserDesc(){
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>CHASER — Опис</h2>
 <div class="desc">
 <p>
@@ -875,6 +892,7 @@ document.getElementById('content').innerHTML=`
 }
 function chaser10(){
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>CHASER 10ml</h2>
 <p><b>Ціна: ${price10} грн</b></p>
 <div class="grid">
@@ -883,14 +901,15 @@ ${chaser10Flavors.map(f=>item('CHASER',f,10)).join('')}
 }
 function chaser30(){
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>CHASER 30ml</h2>
 <h2>Оберіть колекцію</h2>
 <div class="buttons">
 <button class="sub" onclick="chaserBrand('BLACK')">BLACK</button>
 <button class="sub" onclick="chaserBrand('LUX')">LUX</button>
-<button class="sub" onclick="chaserBrand('SB')">SB</button>
 <button class="sub" onclick="chaserBrand('MIX')">MIX</button>
-<button class="sub" onclick="chaserBrand('LIMITED')">LIMITED</button>
+<button class="sub" onclick="chaserBrand('NEW_YEAR')">NEW_YEAR</button>
+<button class="sub" onclick="chaserBrand('MY_MINT')">MY_MINT</button>
 </div>`;
 }
 
@@ -898,6 +917,7 @@ function chaserBrand(b){
 let price = (b === 'LUX') ? 280 : price30;
 
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>CHASER ${b} 30ml</h2>
 <p><b>Ціна: ${price} грн</b> 
 <p><b>оберіть смак</b></p>
@@ -918,6 +938,7 @@ ${chaser30Flavors[b].map(f=>`
 /* ===== КАРТРИДЖІ ===== */
 function showCartridge(){
 document.getElementById('content').innerHTML=`
+<button class="back-btn" onclick="goBack()">← Назад</button>
 <h2>КАРТРИДЖІ</h2>
 <div class="item">
 <b>VAPORESSO XROS</b>
@@ -961,7 +982,7 @@ const chaser30Flavors = {
     "Ром кола 🥃",
     "Чорна смородина груша 🍐"
   ],
-  LIMITED: [
+  NEW_YEAR: [
     'GLINTWINE 🍹' ,
     'PUMPKIN LATTE 🧋🍦',
   ],
@@ -987,9 +1008,26 @@ function glowContent() {
 
 document.addEventListener("click", e => {
     if (e.target.tagName === "BUTTON") {
+        hideBonus();      // ← ховаємо бонуси
         glowContent();
     }
 });
+
+
+function hideBonus(){
+    const bonus = document.getElementById("bonusSection");
+    if(bonus) bonus.style.display = "none";
+}
+
+function showBonus(){
+    const bonus = document.getElementById("bonusSection");
+    if(bonus) bonus.style.display = "block";
+}
+
+function goBack(){
+    document.getElementById("content").innerHTML = "";
+    showBonus(); // повертаємо бонуси назад
+}
 
 
 </script>
