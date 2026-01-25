@@ -629,7 +629,7 @@ header {
             <span id="cartCount">0</span>
         </button>
 
-      </div>  
+        
 </header>
 
 
@@ -637,7 +637,7 @@ header {
 <main>
 <section class="hero">
 <h1 class="logo-glow">ELF_KAR</h1>
-<p><b>ELF_KAR — коли ви в темі й обираєте краще.</b></p>
+<p><b>ELF_KAR — коли ви в темі й обираєте краще.</b></p
 <div class="buttons">
 <button class="action" onclick="showELF()">ELF_LIQ</button>
 <button class="action" onclick="showChaser()">CHASER</button>
@@ -723,8 +723,15 @@ header {
 
 <script>
 let cart=[];
+let historyStack = [];
 const price10=120, price30=250;
 const priceELF = 300;
+
+function setContent(html) {
+    const content = document.getElementById("content");
+    historyStack.push(content.innerHTML); // зберігаємо попередній екран
+    content.innerHTML = html;
+}
 
 
 function toggleCart(){document.getElementById('cart').classList.toggle('open')}
@@ -793,96 +800,75 @@ function order(){
 
 /* ===== ELF_LIQ ===== */
 function showELF(){
-document.getElementById('content').innerHTML=`
-<h2>ELF_LIQ</h2>
-<div class="buttons">
-<button class="sub" onclick="elfDesc()">ОПИС</button>
-<button class="sub" onclick="elfFl()">ВКУСИ</button>
-</div>`;
+    setContent(`
+        <h2>ELF_LIQ</h2>
+        <div class="buttons">
+            <button class="sub" onclick="elfDesc()">ОПИС</button>
+            <button class="sub" onclick="elfFl()">ВКУСИ</button>
+        </div>
+    `);
 }
+
 function elfDesc(){
-document.getElementById('content').innerHTML=`
-<button class="back-btn" onclick="goBack()">← Назад</button>
-<h2>ELF_LIQ — Опис</h2>
-<div class="desc">
-<p>
-<b>ELF_LIQ</b> — це високоякісна рідина для електронних сигарет 
-(вейп-рідина / vape juice) від бренду <b>Elf Bar</b>, створена для того, 
-щоб передати улюблені смакові профілі популярних одноразових Elf Bar 
-у форматі рідини для заправних <b>POD-систем</b> та <b>MTL-девайсів</b>.
-</p>
+    setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>ELF_LIQ — Опис</h2>
+        <div class="desc">
+            <p>
+                <b>ELF_LIQ</b> — це високоякісна рідина для електронних сигарет 
+                (вейп-рідина / vape juice) від бренду <b>Elf Bar</b>, створена для того, 
+                щоб передати улюблені смакові профілі популярних одноразових Elf Bar 
+                у форматі рідини для заправних <b>POD-систем</b> та <b>MTL-девайсів</b>.
+            </p>
 
-<p><b>📍 Основні характеристики</b></p>
+            <p><b>📍 Основні характеристики</b></p>
+            <ul>
+                <li><b>Тип:</b> сольова нікотинова рідина (Nic Salt) — м’який удар по горлу</li>
+                <li><b>Баланс VG/PG:</b> приблизно 50/50 — оптимально для POD-систем</li>
+                <li><b>Міцність:</b> найчастіше 5 mg, 10 mg або 20 mg нікотину</li>
+                <li><b>Призначення:</b> заправні POD-системи та стартові vape-набори</li>
+            </ul>
 
-<ul>
-    <li>
-        <b>Тип:</b> сольова нікотинова рідина (Nic Salt) — забезпечує м’який,
-        плавний удар по горлу та швидке насичення нікотином
-    </li>
-    <li>
-        <b>Баланс VG/PG:</b> приблизно 50/50 — оптимально для POD-систем
-        і компактних девайсів
-    </li>
-    <li>
-        <b>Міцність:</b> найчастіше 5 mg, 10 mg або 20 mg нікотину —
-        вибір залежить від індивідуальних звичок
-    </li>
-    <li>
-        <b>Призначення:</b> заправні POD-системи та стартові vape-набори
-        (POD / MTL) з низькою потужністю
-    </li>
-</ul>
+            <p><b>🍓 Відчуття при використанні</b></p>
+            <ul>
+                <li><b>Смак:</b> чіткий і насичений, з фруктовими нотами</li>
+                <li><b>Пар та аромат:</b> добре розкриваються навіть у слабких POD-девайсах</li>
+                <li><b>Удар по горлу:</b> м’який завдяки нікотиновим солям</li>
+                <li><b>Насичення:</b> швидке та рівномірне</li>
+            </ul>
 
-<p><b>🍓 Відчуття при використанні</b></p>
-
-<ul>
-    <li>
-        <b>Смак:</b> чіткий і насичений, з фруктовими, солодкими або
-        освіжаючими нотами без «димного» присмаку
-    </li>
-    <li>
-        <b>Пар та аромат:</b> добре розкриваються навіть у слабких POD-девайсах
-        і не втрачають яскравість до останньої краплі
-    </li>
-    <li>
-        <b>Удар по горлу:</b> м’який завдяки нікотиновим солям,
-        значно комфортніший у порівнянні з freebase-рідинами
-    </li>
-    <li>
-        <b>Насичення:</b> швидке та рівномірне — відчуття потреби в нікотині
-        зникає швидше
-    </li>
-</ul>
-
-<p><b>📈 Переваги рідини ELF_LIQ</b></p>
-
-<ul>
-    <li>Яскравий смак, максимально наближений до одноразових Elf Bar</li>
-    <li>Комфортне паріння без різкого удару по горлу</li>
-    <li>Ідеально підходить для початківців і тих, хто переходить з одноразок</li>
-    <li>Економія коштів та менше відходів у порівнянні з одноразовими девайсами</li>
-    <li>Широкий вибір смаків — фруктові, освіжаючі та ментолові</li>
-</ul>
-</div>`;
+            <p><b>📈 Переваги рідини ELF_LIQ</b></p>
+            <ul>
+                <li>Яскравий смак, максимально наближений до одноразових Elf Bar</li>
+                <li>Комфортне паріння без різкого удару по горлу</li>
+                <li>Ідеально підходить для початківців</li>
+                <li>Економія коштів та менше відходів</li>
+                <li>Широкий вибір смаків — фруктові, освіжаючі та ментолові</li>
+            </ul>
+        </div>
+    `);
 }
+
 
 function elfFl(){
-document.getElementById('content').innerHTML=`
-<button class="back-btn" onclick="goBack()">← Назад</button>
-<h2>ELF_LIQ</h2>
-<h2>оберіть смак</h2>
-<div class="grid">
-${elfFlavors.map(f=>`
-<div class="item">
-<b>${f}</b>
-<div class="price">30 ml — 300 грн</div>
-<button class="add" onclick="add('ELF_LIQ ${f} 30ml',300)">
-ДОДАТИ ДО КОШИКА
-</button>
-</div>
-`).join('')}
-</div>`;
+    setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>ELF_LIQ</h2>
+        <h2>оберіть смак</h2>
+        <div class="grid">
+        ${elfFlavors.map(f => `
+            <div class="item">
+                <b>${f}</b>
+                <div class="price">30 ml — 300 грн</div>
+                <button class="add" onclick="add('ELF_LIQ ${f} 30ml',300)">
+                    ДОДАТИ ДО КОШИКА
+                </button>
+            </div>
+        `).join('')}
+        </div>
+    `);
 }
+
 
 /* ===== PHANTOM ===== */
 function showPhantom(){
@@ -936,14 +922,16 @@ ${phantomFlavors.map(f=>item('PHANTOM',f,ml)).join('')}
 
 /* ===== CHASER ===== */
 function showChaser(){
-document.getElementById('content').innerHTML=`
-<h2>CHASER</h2>
-<div class="buttons">
-<button class="sub" onclick="chaserDesc()">ОПИС</button>
-<button class="sub" onclick="chaser10()">10 ml</button>
-<button class="sub" onclick="chaser30()">30 ml</button>
-</div>`;
+    setContent(`
+        <h2>CHASER</h2>
+        <div class="buttons">
+            <button class="sub" onclick="chaserDesc()">ОПИС</button>
+            <button class="sub" onclick="chaser10()">10 ml</button>
+            <button class="sub" onclick="chaser30()">30 ml</button>
+        </div>
+    `);
 }
+
 function chaserDesc(){
 document.getElementById('content').innerHTML=`
 <button class="back-btn" onclick="goBack()">← Назад</button>
@@ -1002,50 +990,68 @@ document.getElementById('content').innerHTML=`
 </p>
 </div>`;
 }
+
 function chaser10(){
-document.getElementById('content').innerHTML=`
-<button class="back-btn" onclick="goBack()">← Назад</button>
-<h2>CHASER 10ml</h2>
-<p><b>Ціна: ${price10} грн</b></p>
-<div class="grid">
-${chaser10Flavors.map(f=>item('CHASER',f,10)).join('')}
-</div>`;
+    setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>CHASER 10ml</h2>
+        <p><b>Ціна: ${price10} грн</b></p>
+       <div class="grid">
+         ${chaser10Flavors.map(f => item('CHASER', f, 10)).join('')}
+       </div>
+
+    `);
 }
+
+
 function chaser30(){
-document.getElementById('content').innerHTML=`
-<button class="back-btn" onclick="goBack()">← Назад</button>
-<h2>CHASER 30ml</h2>
-<h2>Оберіть колекцію</h2>
-<div class="buttons">
-<button class="sub" onclick="chaserBrand('BLACK')">BLACK</button>
-<button class="sub" onclick="chaserBrand('LUX')">LUX</button>
-<button class="sub" onclick="chaserBrand('MIX')">MIX</button>
-<button class="sub" onclick="chaserBrand('NEW_YEAR')">NEW_YEAR</button>
-<button class="sub" onclick="chaserBrand('MY_MINT')">MY_MINT</button>
-</div>`;
+    setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>CHASER 30ml</h2>
+        <h2>Оберіть колекцію</h2>
+        <div class="buttons">
+            <button class="sub" onclick="chaserBrand('BLACK')">BLACK</button>
+            <button class="sub" onclick="chaserBrand('LUX')">LUX</button>
+            <button class="sub" onclick="chaserBrand('MIX')">MIX</button>
+            <button class="sub" onclick="chaserBrand('NEW_YEAR')">NEW_YEAR</button>
+            <button class="sub" onclick="chaserBrand('MY_MINT')">MY_MINT</button>
+        </div>
+    `);
 }
 
-function chaserBrand(b){
-let price = (b === 'LUX') ? 280 : price30;
 
-document.getElementById('content').innerHTML=`
-<button class="back-btn" onclick="goBack()">← Назад</button>
-<h2>CHASER ${b} 30ml</h2>
-<p><b>Ціна: ${price} грн</b> 
-<p><b>оберіть смак</b></p>
-</p>
-<div class="grid">
-${chaser30Flavors[b].map(f=>`
-<div class="item">
-<b>${f}</b>
-<div class="price">30 ml — ${price} грн</div>
-<button class="add" onclick="add('CHASER ${b} ${f} 30ml',${price})">
-ДОДАТИ ДО КОШИКА
-</button>
-</div>
-`).join('')}
-</div>`;
+function chaserBrand(b) {
+    const flavors = chaser30Flavors[b];
+    let price = (b === 'LUX') ? 280 : price30;
+
+    if (!flavors || flavors.length === 0) {
+        setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>CHASER ${b} 30ml</h2>
+        <p style="color:#ef4444;font-weight:800;">❌ Немає у наявності</p>
+        `);
+        return;
+    }
+
+    setContent(`
+    <button class="back-btn" onclick="goBack()">← Назад</button>
+    <h2>CHASER ${b} 30ml</h2>
+    <p><b>Ціна: ${price} грн</b></p>
+    <div class="grid">
+        ${flavors.map(f => `
+        <div class="item">
+            <b>${f}</b>
+            <div class="price">30 ml — ${price} грн</div>
+            <button class="add"
+                onclick="add('CHASER ${b} ${f} 30ml', ${price})">
+                ДОДАТИ ДО КОШИКА
+            </button>
+        </div>
+        `).join('')}
+    </div>
+    `);
 }
+
 
 /* ===== КАРТРИДЖІ ===== */
 function showCartridge(){
@@ -1055,9 +1061,9 @@ document.getElementById('content').innerHTML=`
 <div class="item">
 <b>VAPORESSO XROS</b>
 <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
-<div class="price">2 ml · 0.6Ω · 120 грн</div>
+<div class="price">2 ml · 0.8Ω · 120 грн</div>
 <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',120)">ДОДАТИ ДО КОШИКА</button>
-<div class="price">3 ml · 0.4Ω · 120 грн</div>
+<div class="price">3 ml · 0.4Ω · 120 грн <p><b>НЕМАЄ У НАЯВНОСТІ</p></b></div>
 <button class="add" onclick="add('VAPORESSO XROS 3ml 0.4Ω',120)">ДОДАТИ ДО КОШИКА</button>
 
 </div>`;
@@ -1077,9 +1083,21 @@ return `<div class="item">
 const elfFlavors = [
   "Pink Lemonade Soda 🍹",
   "ELF Jack ⚡",
-  "Lemon Lime 🍋🍈",
   "Watermelon🍉"
 ];
+
+const chaser10Flavors = [
+  'Кактус 🌵',
+  'Вишня 🍒',
+  'Кавун 🍉',
+  'Кавун ментол 🍉❄️',
+  'Ківі 🥝',
+  'Полуниця 🍓',
+  'Чорниці ментол 🔵❄️',
+  'Черешня 🍒',
+]
+
+
 
 const chaser30Flavors = {
   BLACK: [
@@ -1122,7 +1140,6 @@ const chaser30Flavors = {
   ]
 };
 
-
 function glowContent() {
     const c = document.getElementById("content");
     if (!c) return;
@@ -1160,9 +1177,16 @@ function showBonus(){
 }
 
 function goBack(){
-    document.getElementById("content").innerHTML = "";
-    showBonus(); // повертаємо бонуси назад
+    const content = document.getElementById("content");
+
+    if (historyStack.length > 0) {
+        content.innerHTML = historyStack.pop();
+    } else {
+        content.innerHTML = "";
+        showBonus();
+    }
 }
+
 
 function openTelegram() {
     const tgUser = "karasik_0169"; // твій Telegram
@@ -1170,6 +1194,18 @@ function openTelegram() {
     window.open(url, "_blank");
 }
 
+
+function showFlavors(type) {
+  const output = document.getElementById("output");
+  const flavors = chaser30Flavors[type];
+
+  if (!flavors || flavors.length === 0) {
+    output.innerHTML = "❌ Немає у наявності";
+    return;
+  }
+
+  output.innerHTML = flavors.map(f => `• ${f}`).join("<br>");
+}
 
 </script>
 </body>
