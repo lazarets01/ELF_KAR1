@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -597,6 +596,14 @@ header {
     cursor: pointer;
 }
 
+#cartItems {
+    flex: 1;              /* займає доступну висоту */
+    overflow-y: auto;     /* вертикальний скрол */
+    margin-top: 12px;
+    padding-right: 6px;
+}
+
+
 /* Кнопка Telegram */
 .telegram-btn {
     background: #1da1f2; /* синій колір Telegram */
@@ -606,6 +613,56 @@ header {
     color: #fff;
     font-weight: 700;
     cursor: pointer;
+}
+
+#toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #22c55e;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .1s transform .1s
+    z-index: 9999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+
+.random-card {
+  background: #151033;
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.5);
+  text-align: center;
+}
+
+.random-card h3 {
+  margin: 0 0 6px;
+}
+
+.random-card strong {
+  display: block;
+  margin: 10px 0;
+  font-size: 20px;
+  color: #a78bfa;
+}
+
+.active-btn {
+    box-shadow:
+        0 0 15px rgba(192, 132, 252, 1),
+        0 0 35px rgba(139, 92, 246, 0.9),
+        0 0 60px rgba(124, 58, 237, 1);
 }
 
 
@@ -643,6 +700,8 @@ header {
 <button class="action" onclick="showChaser()">CHASER</button>
 <button class="action" onclick="showPhantom()">PHANTOM</button>
 <button class="action" onclick="showCartridge()">КАРТРИДЖІ</button>
+<button class="action random-btn" onclick="activateButton(this); randomVape()">🎲 RANDOM</button>
+<div id="randomBox"></div>
 </div>
 </section>
 
@@ -727,19 +786,36 @@ let historyStack = [];
 const price10=120, price30=250;
 const priceELF = 300;
 
-function setContent(html) {
+function setContent(html, pushHistory = true) {
     const content = document.getElementById("content");
-    historyStack.push(content.innerHTML); // зберігаємо попередній екран
+    
+    if(pushHistory) {
+        historyStack.push(content.innerHTML);
+    }
+
     content.innerHTML = html;
+
+    // скидаємо вміст RANDOM при зміні контенту
+    const randomBox = document.getElementById("randomBox");
+    if(randomBox) randomBox.innerHTML = "";
 }
+
+
 
 
 function toggleCart(){document.getElementById('cart').classList.toggle('open')}
 
-function add(name,price){
-let i=cart.find(x=>x.name===name);
-i?i.qty++:cart.push({name,price,qty:1});
-renderCart();
+function add(name, price){
+    let item = cart.find(x => x.name === name);
+
+    if(item){
+        item.qty++;
+    } else {
+        cart.push({ name, price, qty: 1 });
+    }
+
+    renderCart();
+    showToast();
 }
 
 function renderCart(){
@@ -872,12 +948,14 @@ function elfFl(){
 
 /* ===== PHANTOM ===== */
 function showPhantom(){
-document.getElementById('content').innerHTML=`
-<h2>PHANTOM</h2>
-<p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
-<div class="buttons">
-<button class="sub" onclick="phantomDesc()">ОПИС</button>
-</div>`;
+    hideBonus(); // ховаємо бонуси
+    setContent(`
+        <h2>PHANTOM</h2>
+        <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
+        <div class="buttons">
+            <button class="sub" onclick="phantomDesc()">ОПИС</button>
+        </div>
+    `);
 }
 function phantomDesc(){
 document.getElementById('content').innerHTML=`
@@ -1055,18 +1133,19 @@ function chaserBrand(b) {
 
 /* ===== КАРТРИДЖІ ===== */
 function showCartridge(){
-document.getElementById('content').innerHTML=`
-<button class="back-btn" onclick="goBack()">← Назад</button>
-<h2>КАРТРИДЖІ</h2>
-<div class="item">
-<b>VAPORESSO XROS</b>
-<p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
-<div class="price">2 ml · 0.8Ω · 120 грн</div>
-<button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',120)">ДОДАТИ ДО КОШИКА</button>
-<div class="price">3 ml · 0.4Ω · 120 грн <p><b>НЕМАЄ У НАЯВНОСТІ</p></b></div>
-<button class="add" onclick="add('VAPORESSO XROS 3ml 0.4Ω',120)">ДОДАТИ ДО КОШИКА</button>
-
-</div>`;
+    hideBonus(); // ховаємо бонуси
+    setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>КАРТРИДЖІ</h2>
+        <div class="item">
+            <b>VAPORESSO XROS</b>
+            <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
+            <div class="price">2 ml · 0.8Ω · 120 грн</div>
+            <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',120)">ДОДАТИ ДО КОШИКА</button>
+            <div class="price">3 ml · 0.4Ω · 120 грн <p><b>НЕМАЄ У НАЯВНОСТІ</p></b></div>
+            <button class="add" onclick="add('VAPORESSO XROS 3ml 0.4Ω',120)">ДОДАТИ ДО КОШИКА</button>
+        </div>
+    `);
 }
 
 function item(brand,flavor,ml){
@@ -1083,7 +1162,7 @@ return `<div class="item">
 const elfFlavors = [
   "Pink Lemonade Soda 🍹",
   "ELF Jack ⚡",
-  "Watermelon🍉"
+  "Strowberry Raspberry Cherry Ice",
 ];
 
 const chaser10Flavors = [
@@ -1183,9 +1262,10 @@ function goBack(){
         content.innerHTML = historyStack.pop();
     } else {
         content.innerHTML = "";
-        showBonus();
     }
+    showBonus(); // бонуси знову видимі
 }
+
 
 
 function openTelegram() {
@@ -1207,7 +1287,131 @@ function showFlavors(type) {
   output.innerHTML = flavors.map(f => `• ${f}`).join("<br>");
 }
 
+let toastTimeout;
+
+function showToast(text = "✅ Додано в кошик") {
+    const toast = document.getElementById("toast");
+    toast.textContent = text;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1000);
+}
+
+
+function getAllProducts(){
+  const items = [];
+
+  // CHASER 10 ml
+  chaser10Flavors.forEach(flavor => {
+    items.push({
+      name: "CHASER 10ml",
+      flavor,
+      price: price10
+    });
+  });
+
+  // CHASER 30 ml (усі колекції)
+  Object.keys(chaser30Flavors).forEach(brand => {
+    const price = (brand === "LUX") ? 280 : price30;
+
+    chaser30Flavors[brand].forEach(flavor => {
+      items.push({
+        name: `CHASER ${brand} 30ml`,
+        flavor,
+        price
+      });
+    });
+  });
+
+  // ELF_LIQ
+  elfFlavors.forEach(flavor => {
+    items.push({
+      name: "ELF_LIQ 30ml",
+      flavor,
+      price: priceELF
+    });
+  });
+
+  return items;
+}
+
+
+
+function randomVape() {
+    // ховаємо бонуси
+    hideBonus();
+
+    // очищаємо попередній контент
+    const content = document.getElementById("content");
+    historyStack.push(content.innerHTML); 
+    content.innerHTML = "";
+
+    // усі смаки з усіх лінійок
+    const allFlavors = [
+        ...elfFlavors.map(f => ({ brand: 'ELF_LIQ', name: f, price: priceELF, ml: 30 })),
+        ...chaser10Flavors.map(f => ({ brand: 'CHASER', name: f, price: price10, ml: 10 })),
+        ...[].concat(...Object.entries(chaser30Flavors).map(([b, arr]) => 
+            arr.map(f => ({ brand: 'CHASER', name: `${b} ${f}`, price: b === 'LUX' ? 280 : price30, ml: 30 }))
+        ))
+    ];
+
+    // випадковий продукт
+    const rand = allFlavors[Math.floor(Math.random() * allFlavors.length)];
+
+    // показуємо в randomBox
+    const randomBox = document.getElementById("randomBox");
+    if (randomBox) {
+        randomBox.innerHTML = `
+            <div class="random-card">
+                <h3>🎲 Випадковий вибір</h3>
+                <strong>${rand.brand} ${rand.name} ${rand.ml}ml</strong>
+                <div class="price">${rand.ml} ml — ${rand.price} грн</div>
+                <button class="add" onclick="add('${rand.brand} ${rand.name} ${rand.ml}ml', ${rand.price})">
+                    ДОДАТИ ДО КОШИКА
+                </button>
+            </div>
+        `;
+    }
+
+    // підсвітка
+    glowContent();
+}
+
+
+
+
+let lastActiveBtn = null;
+
+function activateButton(btn) {
+    if (!btn) return;
+
+    btn.classList.add("active-btn"); // додаємо клас для спалаху
+
+    // через 300ms видаляємо клас, щоб кнопка загасла
+    setTimeout(() => {
+        btn.classList.remove("active-btn");
+    }, 300);
+}
+
+
+// Очищаємо підсвітку при натисканні на кнопки підконтенту (sub, back)
+document.addEventListener("click", e => {
+    if (e.target.tagName === "BUTTON") {
+        hideBonus();      // ховаємо бонуси при натисканні
+        glowContent();
+    }
+});
+
+
+
+
 </script>
+
+<div id="toast">✅ Додано в кошик</div>
+
 </body>
 </html>
 
