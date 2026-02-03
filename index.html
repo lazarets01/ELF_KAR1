@@ -931,6 +931,7 @@ function elfFl(){
         <button class="back-btn" onclick="goBack()">← Назад</button>
         <h2>ELF_LIQ</h2>
         <h2>оберіть смак</h2>
+        <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
         <div class="grid">
         ${elfFlavors.map(f => `
             <div class="item">
@@ -1139,11 +1140,10 @@ function showCartridge(){
         <h2>КАРТРИДЖІ</h2>
         <div class="item">
             <b>VAPORESSO XROS</b>
-            <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
             <div class="price">2 ml · 0.8Ω · 120 грн</div>
-            <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',120)">ДОДАТИ ДО КОШИКА</button>
+            <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',110)">ДОДАТИ ДО КОШИКА</button>
             <div class="price">3 ml · 0.4Ω · 120 грн <p><b>НЕМАЄ У НАЯВНОСТІ</p></b></div>
-            <button class="add" onclick="add('VAPORESSO XROS 3ml 0.4Ω',120)">ДОДАТИ ДО КОШИКА</button>
+            <button class="add" onclick="add('VAPORESSO XROS 3ml 0.8Ω',130)">ДОДАТИ ДО КОШИКА</button>
         </div>
     `);
 }
@@ -1159,15 +1159,11 @@ return `<div class="item">
 
 /* DATA */
 
-const elfFlavors = [
-  "Pink Lemonade Soda 🍹",
-  "ELF Jack ⚡",
-];
+const elfFlavors = [ ];
 
 const chaser10Flavors = [
   'Кактус 🌵',
   'Вишня 🍒',
-  'Кавун 🍉',
   'Ківі 🥝',
   'Полуниця 🍓',
   'Черешня 🍒',
