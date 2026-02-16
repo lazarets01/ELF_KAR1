@@ -952,9 +952,9 @@ function showPhantom(){
     hideBonus(); // ховаємо бонуси
     setContent(`
         <h2>PHANTOM</h2>
-        <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
         <div class="buttons">
             <button class="sub" onclick="phantomDesc()">ОПИС</button>
+            <button class="sub" onclick="phantomFl()">ВКУСИ</button>
         </div>
     `);
 }
@@ -998,6 +998,25 @@ document.getElementById('content').innerHTML=`
 ${phantomFlavors.map(f=>item('PHANTOM',f,ml)).join('')}
 </div>`;
 }
+function phantomFl(){
+    setContent(`
+        <button class="back-btn" onclick="goBack()">← Назад</button>
+        <h2>PHANTOM 10ml</h2>
+        <p><b>Ціна: ${price10} грн</b></p>
+        <div class="grid">
+        ${phantomFlavors.map(f => `
+            <div class="item">
+                <b>${f}</b>
+                <div class="price">10 ml — ${price10} грн</div>
+                <button class="add" onclick="add('PHANTOM ${f} 10ml',${price10})">
+                    ДОДАТИ ДО КОШИКА
+                </button>
+            </div>
+        `).join('')}
+        </div>
+    `);
+}
+
 
 /* ===== CHASER ===== */
 function showChaser(){
@@ -1161,6 +1180,31 @@ return `<div class="item">
 
 const elfFlavors = [ ];
 
+const phantomFlavors = [
+  'Watermelon Spearmint 🍉🍃',
+  'Watermelon 🍉',
+  'Kiwi Passion Fruit Guava 🥝🥭',
+  'Energy Grape ⚡️🍇',
+  'Energy ⚡️',
+  'Spearmint 🍃❄️',
+  'Raspberry 🍓',
+  'Raspberry Peach 🍓🍑',
+  'Sour Apple 🍏🍎',
+  'Pomegranate 🥭',
+  'Lemon Peach 🍋🍑',
+  'Orbit ❄️🍃',
+  'Currant Ice 🫐❄️',
+  'Cider 🍾',
+  'Citrus Mix 🍊🍋‍🟩🍋',
+  'Cherry Berry 🍒🫐🍌',
+  'Grape 🍇',
+  'Apple Pear 🍏🍎🍐',
+  'Fruit Fusion 🥭🫐🍓',
+  'BERRY NEEDLES',
+  'CHERRY 🍒'
+];
+
+
 const chaser10Flavors = [
   'Кактус 🌵',
   'Вишня 🍒',
@@ -1173,30 +1217,32 @@ const chaser10Flavors = [
 
 const chaser30Flavors = {
   BLACK: [
-    'COLA POMELO🧉🍊🆕',
+    'BALI 🍊🍉🥝',
+    'RASPBERRY 🫐🍋‍🟩🍓',
+    'BLACKCURRANT PEACH APPLE 🍎🍑🍏',
+    'TRIPLE BERRY 🍒🥭🍑',
+    'ENERGY RASPBERRY 🍓⚡️',
+    'ENERGY GRAPE ⚡️🍇',
+    'KIWI WILD STRAWBERRY 🥝',
+    'WILD STRAWBERRY MINT 🍓🌿'
+  ],
+  SB: [
+    'BLACKBERRY 🖤🍇',
+    'CRANBERRY MINT 🍀🍒',
+    'CHERRIES 🍒',
+    'ENERGY CHERRY ⚡️🍒',
+    'STRAWBERRY JELLY 🍓🍮'
   ],
 
   LUX: [
-    'BERRY NEEDLES 🌲🫐',
-    'PEACH TEA 🍑🍵',
-    'VITAMIN',
-    'SOUR WATERMELON CANDY',
-    'BLACKBERRY LEMONADE 🫐🍋🥤'
   ],
 
   MIX: [
-    'Ожиновий джем',
-    'Журавлина кактус',
-    'Базилік мʼята',
-    'Чорниця смородина груша',
-    
+    'Журавлина кактус', 
   ],
 
 
-  MY_MINT: [
-    'MENTHOL',
-    'SPEARMINT 💚'
-  ]
+  MY_MINT: [ ]
 };
 
 function glowContent() {
