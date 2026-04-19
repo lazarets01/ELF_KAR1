@@ -1121,7 +1121,16 @@ function chaser30(){
 
 function chaserBrand(b) {
     const flavors = chaser30Flavors[b];
-    let price = (b === 'LUX','LUB') ? 280 : price30;
+
+    let price;
+
+    if (b === 'LUX' || b === 'LUB') {
+        price = 280;
+    } else if (b === 'BLACK' || b === 'MIX') {
+        price = 250;
+    } else {
+        price = price30;
+    }
 
     if (!flavors || flavors.length === 0) {
         setContent(`
@@ -1131,6 +1140,25 @@ function chaserBrand(b) {
         `);
         return;
     }
+
+    setContent(`
+    <button class="back-btn" onclick="goBack()">← Назад</button>
+    <h2>CHASER ${b} 30ml</h2>
+    <p><b>Ціна: ${price} грн</b></p>
+    <div class="grid">
+        ${flavors.map(f => `
+        <div class="item">
+            <b>${f}</b>
+            <div class="price">30 ml — ${price} грн</div>
+            <button class="add"
+                onclick="add('CHASER ${b} ${f} 30ml', ${price})">
+                ДОДАТИ ДО КОШИКА
+            </button>
+        </div>
+        `).join('')}
+    </div>
+    `);
+}
 
     setContent(`
     <button class="back-btn" onclick="goBack()">← Назад</button>
