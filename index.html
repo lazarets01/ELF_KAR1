@@ -698,7 +698,6 @@ header {
 <div class="buttons">
 <button class="action" onclick="showELF()">ELF_LIQ</button>
 <button class="action" onclick="showChaser()">CHASER</button>
-<button class="action" onclick="showPhantom()">PHANTOM</button>
 <button class="action" onclick="showCartridge()">КАРТРИДЖІ</button>
 <button class="action random-btn" onclick="activateButton(this); randomVape()">🎲 RANDOM</button>
 <div id="randomBox"></div>
@@ -931,7 +930,7 @@ function elfFl(){
         <button class="back-btn" onclick="goBack()">← Назад</button>
         <h2>ELF_LIQ</h2>
         <h2>оберіть смак</h2>
-        <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
+        <p><b></b></p>
         <div class="grid">
         ${elfFlavors.map(f => `
             <div class="item">
@@ -947,7 +946,7 @@ function elfFl(){
 }
 
 
-/* ===== PHANTOM ===== */
+/* ===== PHANTOM ===== 
 function showPhantom(){
     hideBonus(); // ховаємо бонуси
     setContent(`
@@ -1016,7 +1015,7 @@ function phantomFl(){
         </div>
     `);
 }
-
+*/
 
 /* ===== CHASER ===== */
 function showChaser(){
@@ -1111,9 +1110,8 @@ function chaser30(){
             <button class="sub" onclick="chaserBrand('BLACK')">BLACK</button>
             <button class="sub" onclick="chaserBrand('LUX')">LUX</button>
             <button class="sub" onclick="chaserBrand('MIX')">MIX</button>
-            <button class="sub" onclick="chaserBrand('NEW_YEAR')">NEW_YEAR</button>
-            <button class="sub" onclick="chaserBrand('MY_MINT')">MY_MINT</button>
-            <button class="sub" onclick="chaserBrand('SB')">MIX</button>
+            <button class="sub" onclick="chaserBrand('LUB')">LUB(beat)</button>
+           
         </div>
     `);
 }
@@ -1179,40 +1177,35 @@ return `<div class="item">
 
 /* DATA */
 
-const elfFlavors = [ ];
-
-const phantomFlavors = [
-  'Watermelon Spearmint 🍉🍃',
-  'Watermelon 🍉',
-  'Kiwi Passion Fruit Guava 🥝🥭',
-  'Energy Grape ⚡️🍇',
-  'Energy ⚡️',
-  'Spearmint 🍃❄️',
-  'Raspberry 🍓',
-  'Raspberry Peach 🍓🍑',
-  'Sour Apple 🍏🍎',
-  'Pomegranate 🥭',
-  'Lemon Peach 🍋🍑',
-  'Orbit ❄️🍃',
-  'Currant Ice 🫐❄️',
-  'Cider 🍾',
-  'Citrus Mix 🍊🍋‍🟩🍋',
-  'Cherry Berry 🍒🫐🍌',
-  'Grape 🍇',
-  'Apple Pear 🍏🍎🍐',
-  'Fruit Fusion 🥭🫐🍓',
-  'BERRY NEEDLES',
-  'CHERRY 🍒'
+const elfFlavors = [
+  'Sour Apple 🍏😖',
+  'Watermelon Cherry 🍉🍒'
 ];
+
+/*const phantomFlavors = [
+];
+*/
 
 
 const chaser10Flavors = [
-  'Кактус 🌵',
   'Вишня 🍒',
+  'Гранат ❤️',
+  'Диня 🍈',
+  'Жовтий драгонфрут 🟡🐉',
+  'Жовта черешня 🍒🟡',
+  'Кавун 🍉',
   'Ківі 🥝',
+  'Лимон 🍋',
+  'Мʼята 🌿',
+  'Персик 🍑',
   'Полуниця 🍓',
+  'Порічка 🔴',
+  'Смородина ментол 🫐❄️',
+  'Суниця 🍓🌱',
   'Черешня 🍒',
-]
+  'Чорниця ментол 🫐❄️',
+  'Вишня ментол ❄️🍒'
+];
 
 
 
@@ -1227,39 +1220,33 @@ const chaser30Flavors = {
     'KIWI WILD STRAWBERRY 🥝',
     'WILD STRAWBERRY MINT 🍓🌿'
   ],
-  SB: [
-    'BLACKBERRY 🖤🍇',
-    'CRANBERRY MINT 🍀🍒',
-    'CHERRIES 🍒',
-    'ENERGY CHERRY ⚡️🍒',
-    'STRAWBERRY JELLY 🍓🍮'
-  ],
+ /* SB: [
+],
+*/
 
-  LUX: [
-  'GRAPE MINT 🍇🍃❄️',
-  'MANGO NECTAR 🥭🍯',
-  'ICE LATTE 🆕🧋',
-  'LYCHEE PASSION 🍈🍓🆕',
-  'CURRANT CHERRY 🫐🍒🆕',
-  'BLACKBERRY TOAST 🫐🍞🆕',
-  'BERRY LEMONADE 🍒🍓🧃',
-  'SANGRIA 🍸🍓',
-  'BLUEBERRY RASPBERRY 🫐🍓',
-  'COCONUT MELON 🍈🥥',
-  'WATERMELON RASPBERRY 🍉🍓',
-  'CHERRY LEMON 🍒🍋',
-  'ENERGETIC ⚡️',
-  'SOUR APPLE 🍏',
-  'TURBO MINT 🍀'
-  ],
+LUX: [
+  'Tropic punch 🍓🍋',
+  'Berry needles 🌲🍓',
+  'Currant cherry 🔴🍒',
+  'Kiwi passion fruit guava 🥝🥭',
+  'Lychee passion 🍈❤️',
+  'Sour apple 🍏😖',
+  'Turbo mint ❄️💨'
+],
 
-  MIX: [
-    'Журавлина кактус', 
-  ],
+MIX: [
+  'Банановий пунш  🍌',
+  'Вишневий чай🍒🍵', 
+],
 
-
-  MY_MINT: [ ]
-};
+LUB: [
+  'Bass Berry 🍇🍓',
+  'Cherry Pulse 🍒🥤',
+  'Grape Techno 🍇⚡️',
+  'Pineapple Bass 🍍',
+  'Bubble Berry Tune 🫐🍬',
+  'Grape Cherry 🍇🍒'
+]
 
 function glowContent() {
     const c = document.getElementById("content");
