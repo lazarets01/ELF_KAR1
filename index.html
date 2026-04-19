@@ -680,14 +680,13 @@ header {
         <button class="telegram-btn" onclick="openTelegram()">
             Telegram 📲
         </button>
-
+        
         <button class="cart-btn" onclick="toggleCart()">
             Кошик 🛒
             <span id="cartCount">0</span>
         </button>
 
-    </div>  <!-- ОЦЕ ТИ НЕ БАЧИШ / НЕ ДОДАВ -->
-
+        
 </header>
 
 
@@ -707,7 +706,6 @@ header {
 </section>
 
 <section class="section" id="bonusSection">
-             <h1><b>*АКЦІЯ  5% </b></h1>
   <h2>🎁 Бонусна система ELF_KAR</h2>
 
   <p>
@@ -933,7 +931,7 @@ function elfFl(){
         <button class="back-btn" onclick="goBack()">← Назад</button>
         <h2>ELF_LIQ</h2>
         <h2>оберіть смак</h2>
-        <p><b></b></p>
+        <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
         <div class="grid">
         ${elfFlavors.map(f => `
             <div class="item">
@@ -949,14 +947,14 @@ function elfFl(){
 }
 
 
-/* ===== PHANTOM ===== 
+/* ===== PHANTOM ===== */
 function showPhantom(){
     hideBonus(); // ховаємо бонуси
     setContent(`
         <h2>PHANTOM</h2>
+        <p><b>НАЖАЛЬ ПОКИ НЕМАЄ</b></p>
         <div class="buttons">
             <button class="sub" onclick="phantomDesc()">ОПИС</button>
-            <button class="sub" onclick="phantomFl()">ВКУСИ</button>
         </div>
     `);
 }
@@ -1000,25 +998,6 @@ document.getElementById('content').innerHTML=`
 ${phantomFlavors.map(f=>item('PHANTOM',f,ml)).join('')}
 </div>`;
 }
-function phantomFl(){
-    setContent(`
-        <button class="back-btn" onclick="goBack()">← Назад</button>
-        <h2>PHANTOM 10ml</h2>
-        <p><b>Ціна: ${price10} грн</b></p>
-        <div class="grid">
-        ${phantomFlavors.map(f => `
-            <div class="item">
-                <b>${f}</b>
-                <div class="price">10 ml — ${price10} грн</div>
-                <button class="add" onclick="add('PHANTOM ${f} 10ml',${price10})">
-                    ДОДАТИ ДО КОШИКА
-                </button>
-            </div>
-        `).join('')}
-        </div>
-    `);
-}
-*/
 
 /* ===== CHASER ===== */
 function showChaser(){
@@ -1110,11 +1089,10 @@ function chaser30(){
         <h2>CHASER 30ml</h2>
         <h2>Оберіть колекцію</h2>
         <div class="buttons">
-            <button class="sub" onclick="chaserBrand('BLACK')">BLACK</button>
+         <button class="sub" onclick="chaserBrand('BLACK')">BLACK</button>
             <button class="sub" onclick="chaserBrand('LUX')">LUX</button>
             <button class="sub" onclick="chaserBrand('MIX')">MIX</button>
             <button class="sub" onclick="chaserBrand('LUB')">LUB(beat)</button>
-           
         </div>
     `);
 }
@@ -1122,16 +1100,7 @@ function chaser30(){
 
 function chaserBrand(b) {
     const flavors = chaser30Flavors[b];
-
-    let price;
-
-    if (b === 'LUX' || b === 'LUB') {
-        price = 280;
-    } else if (b === 'BLACK' || b === 'MIX') {
-        price = 250;
-    } else {
-        price = price30;
-    }
+    let price = ['LUX', 'LUB'].includes(b) ? 280 : price30;
 
     if (!flavors || flavors.length === 0) {
         setContent(`
@@ -1141,25 +1110,6 @@ function chaserBrand(b) {
         `);
         return;
     }
-
-    setContent(`
-    <button class="back-btn" onclick="goBack()">← Назад</button>
-    <h2>CHASER ${b} 30ml</h2>
-    <p><b>Ціна: ${price} грн</b></p>
-    <div class="grid">
-        ${flavors.map(f => `
-        <div class="item">
-            <b>${f}</b>
-            <div class="price">30 ml — ${price} грн</div>
-            <button class="add"
-                onclick="add('CHASER ${b} ${f} 30ml', ${price})">
-                ДОДАТИ ДО КОШИКА
-            </button>
-        </div>
-        `).join('')}
-    </div>
-    `);
-}
 
     setContent(`
     <button class="back-btn" onclick="goBack()">← Назад</button>
@@ -1191,7 +1141,7 @@ function showCartridge(){
             <b>VAPORESSO XROS</b>
             <div class="price">2 ml · 0.6Ω · 120 грн</div>
             <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',110)">ДОДАТИ ДО КОШИКА</button>
-            <div class="price">3 ml · 0.4Ω · 130 грн</div>
+            <div class="price">3 ml · 0.4Ω · 130 грн </div>
             <button class="add" onclick="add('VAPORESSO XROS 3ml 0.8Ω',130)">ДОДАТИ ДО КОШИКА</button>
         </div>
     `);
@@ -1275,7 +1225,6 @@ const chaser30Flavors = {
     'Grape Cherry 🍇🍒'
   ]
 }; 
-
 function glowContent() {
     const c = document.getElementById("content");
     if (!c) return;
@@ -1471,15 +1420,3 @@ document.addEventListener("click", e => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
