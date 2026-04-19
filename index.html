@@ -694,7 +694,8 @@ header {
 <main>
 <section class="hero">
 <h1 class="logo-glow">ELF_KAR</h1>
-<p><b>ELF_KAR — коли ви в темі й обираєте краще.</b></p>
+<p><b>ELF_KAR — коли ви в темі.</b></p>
+            <p><b>Обираєте найкраще</b></p>
 <div class="buttons">
 <button class="action" onclick="showELF()">ELF_LIQ</button>
 <button class="action" onclick="showChaser()">CHASER</button>
@@ -705,6 +706,7 @@ header {
 </section>
 
 <section class="section" id="bonusSection">
+             <h1>*АКЦІЯ</h1>
   <h2>🎁 Бонусна система ELF_KAR</h2>
 
   <p>
@@ -1119,7 +1121,7 @@ function chaser30(){
 
 function chaserBrand(b) {
     const flavors = chaser30Flavors[b];
-    let price = (b === 'LUX') ? 280 : price30;
+    let price = (b === 'LUX','LUB') ? 280 : price30;
 
     if (!flavors || flavors.length === 0) {
         setContent(`
