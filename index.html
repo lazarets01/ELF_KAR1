@@ -712,7 +712,7 @@ header {
     За кожне підтверджене замовлення ви отримуєте <b>бонуси</b>
   </p>
   <ul>
-    <li>🔹 5% від суми замовлення повертається бонусами</li>
+    <li>🔹 3% від суми замовлення повертається бонусами</li>
     <li>🔹 1 бонус = 1 грн знижки</li>
     <li>🔹 Бонуси можна використати при наступному замовленні</li>
   </ul>
@@ -783,8 +783,8 @@ header {
 <script>
 let cart=[];
 let historyStack = [];
-const price10=120, price30=250;
-const priceELF = 300;
+const price10=120, price30=240;
+const priceELF = 260;
 
 function setContent(html, pushHistory = true) {
     const content = document.getElementById("content");
@@ -848,7 +848,7 @@ function order(){
         total += i.price * i.qty;
     });
 
-    let bonus = Math.floor(total * 0.05);
+    let bonus = Math.floor(total * 0.03);
 
     text += `\nСума: ${total} грн`;
     text += `\n🎁 Бонуси за замовлення: ${bonus} грн\n\n`;
@@ -1168,37 +1168,25 @@ const elfFlavors = [
 
 
 const chaser10Flavors = [
-  'Вишня 🍒',
   'Гранат ❤️',
   'Диня 🍈',
   'Жовтий драгонфрут 🟡🐉',
   'Жовта черешня 🍒🟡',
   'Кавун 🍉',
-  'Ківі 🥝',
   'Лимон 🍋',
-  'Мʼята 🌿',
   'Персик 🍑',
   'Полуниця 🍓',
   'Порічка 🔴',
-  'Смородина ментол 🫐❄️',
   'Суниця 🍓🌱',
   'Черешня 🍒',
-  'Чорниця ментол 🫐❄️',
-  'Вишня ментол ❄️🍒'
+
 ];
 
 
 
 const chaser30Flavors = {
   BLACK: [
-    'BALI 🍊🍉🥝',
-    'RASPBERRY 🫐🍋‍🟩🍓',
-    'BLACKCURRANT PEACH APPLE 🍎🍑🍏',
-    'TRIPLE BERRY 🍒🥭🍑',
-    'ENERGY RASPBERRY 🍓⚡️',
-    'ENERGY GRAPE ⚡️🍇',
-    'KIWI WILD STRAWBERRY 🥝',
-    'WILD STRAWBERRY MINT 🍓🌿'
+    'lemon mint🍋❄️'
   ],
 
   LUX: [
@@ -1219,9 +1207,7 @@ const chaser30Flavors = {
   LUB: [
     'Bass Berry 🍇🍓',
     'Cherry Pulse 🍒🥤',
-    'Grape Techno 🍇⚡️',
     'Pineapple Bass 🍍',
-    'Bubble Berry Tune 🫐🍬',
     'Grape Cherry 🍇🍒'
   ]
 }; 
