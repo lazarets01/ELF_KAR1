@@ -26,18 +26,6 @@ body {
     color: var(--text);
 }
 
-/* Header */
-header {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 18px;
-    background: rgba(10, 8, 25, 0.9);
-    backdrop-filter: blur(12px);
-    z-index: 10;
-}
 
 .back-btn{
     width:100%;
@@ -534,18 +522,7 @@ button:hover::before {
         0 0 80px rgba(29,161,242,0.9);
 }
 
-header {
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: flex-end; /* кнопки справа */
-    align-items: center;
-    gap: 12px; /* відстань між кнопками */
-    padding: 14px 18px;
-    background: rgba(10, 8, 25, 0.9);
-    backdrop-filter: blur(12px);
-    z-index: 10;
-}
+
 
 .cart-btn {
     background: var(--accent);
@@ -571,7 +548,7 @@ header {
     position: sticky;
     top: 0;
     display: flex;
-    justify-content: space-between; /* логотип зліва, кнопки справа */
+    justify-content: space-between;
     align-items: center;
     padding: 14px 18px;
     background: rgba(10, 8, 25, 0.9);
@@ -628,7 +605,7 @@ header {
     box-shadow: 0 10px 30px rgba(0,0,0,.35);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .1s transform .1s
+    transition: opacity .1s, transform .1s;
     z-index: 9999;
 }
 
@@ -685,7 +662,7 @@ header {
             Кошик 🛒
             <span id="cartCount">0</span>
         </button>
-
+    </div>
         
 </header>
 
@@ -757,11 +734,11 @@ header {
         ELF_KAR — коли хочеш максимум смаку за мінімальні гроші.
     </p>
 
- <p style="margin-top:12px; font-weight:600; color:#c4b5fd;">
+    <p style="margin-top:12px; font-weight:600; color:#c4b5fd;">
     Також в нас є <b>телеграм канал</b> — натискайте на посилання нижче: 
     <p><a href="https://t.me/+JmmBqKd2EkVkZWMy" target="_blank" style="color:#c4b5fd; text-decoration:underline;">
         https://t.me/+JmmBqKd2EkVkZWMy</p>
-    </a>
+</a>
 </p>
    
 </section>
@@ -784,13 +761,14 @@ header {
 let cart=[];
 let historyStack = [];
 const price10=120, price30=240;
-const priceELF = 260;
+const priceELF = 280;
 
 function setContent(html, pushHistory = true) {
     const content = document.getElementById("content");
     
     if(pushHistory) {
         historyStack.push(content.innerHTML);
+        content.innerHTML = "<h2>🎲 RANDOM</h2>";
     }
 
     content.innerHTML = html;
@@ -1100,8 +1078,10 @@ function chaser30(){
 
 
 function chaserBrand(b) {
+    b = b.trim().toUpperCase(); // 💥 ВАЖЛИВО
+
     const flavors = chaser30Flavors[b];
-    let price = ['LUX', 'LUB'].includes(b) ? 280 : price30;
+    let price = (b === 'LUX' || b === 'LUB') ? 280 : price30;
 
     if (!flavors || flavors.length === 0) {
         setContent(`
@@ -1141,9 +1121,9 @@ function showCartridge(){
         <div class="item">
             <b>VAPORESSO XROS</b>
             <div class="price">2 ml · 0.6Ω · 120 грн</div>
-            <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',110)">ДОДАТИ ДО КОШИКА</button>
+            <button class="add" onclick="add('VAPORESSO XROS 2ml 0.6Ω',120)">ДОДАТИ ДО КОШИКА</button>
             <div class="price">3 ml · 0.4Ω · 130 грн </div>
-            <button class="add" onclick="add('VAPORESSO XROS 3ml 0.8Ω',130)">ДОДАТИ ДО КОШИКА</button>
+            <button class="add" onclick="add('VAPORESSO XROS 3ml 0.4Ω',130)">ДОДАТИ ДО КОШИКА</button>
         </div>
     `);
 }
@@ -1209,15 +1189,16 @@ const chaser30Flavors = {
    "Blue ice beat 🧊🫐",
    "Bubble berry tune 🍬🍓",
    "Grape tehno 🍇🎧",
-  ]
+  ],
 
-   F/P: [
+   'F/P': [
    "Персик 🍑🍑",
    "Гранат 🍷🍒",
    "Чорниця ментол 🫐❄️",
    "М’ята 🌿❄️",
        
-  ]
+  ],
+
 }; 
 function glowContent() {
     const c = document.getElementById("content");
@@ -1237,12 +1218,7 @@ function glowContent() {
     }, 450);
 }
 
-document.addEventListener("click", e => {
-    if (e.target.tagName === "BUTTON") {
-        hideBonus();      // ← ховаємо бонуси
-        glowContent();
-    }
-});
+
 
 
 function hideBonus(){
@@ -1315,7 +1291,7 @@ function getAllProducts(){
 
   // CHASER 30 ml (усі колекції)
   Object.keys(chaser30Flavors).forEach(brand => {
-    const price = (brand === "LUX") ? 280 : price30;
+    const price = ['LUX', 'LUB'].includes(brand) ? 280 : price30;
 
     chaser30Flavors[brand].forEach(flavor => {
       items.push({
@@ -1346,7 +1322,8 @@ function randomVape() {
 
     // очищаємо попередній контент
     const content = document.getElementById("content");
-    historyStack.push(content.innerHTML); 
+    historyStack.push(content.innerHTML);
+    content.innerHTML = "<h2>🎲 RANDOM</h2>";
     content.innerHTML = "";
 
     // усі смаки з усіх лінійок
@@ -1354,7 +1331,7 @@ function randomVape() {
         ...elfFlavors.map(f => ({ brand: 'ELF_LIQ', name: f, price: priceELF, ml: 30 })),
         ...chaser10Flavors.map(f => ({ brand: 'CHASER', name: f, price: price10, ml: 10 })),
         ...[].concat(...Object.entries(chaser30Flavors).map(([b, arr]) => 
-            arr.map(f => ({ brand: 'CHASER', name: `${b} ${f}`, price: b === 'LUX' ? 280 : price30, ml: 30 }))
+            arr.map(f => ({ brand: 'CHASER', name: `${b} ${f}`, price: ['LUX','LUB'].includes(b) ? 280 : price30, ml: 30 }))
         ))
     ];
 
@@ -1399,10 +1376,10 @@ function activateButton(btn) {
 
 // Очищаємо підсвітку при натисканні на кнопки підконтенту (sub, back)
 document.addEventListener("click", e => {
-    if (e.target.tagName === "BUTTON") {
-        hideBonus();      // ховаємо бонуси при натисканні
-        glowContent();
-    }
+   if (e.target.classList.contains("action") || e.target.classList.contains("sub")) {
+    hideBonus();
+    glowContent();
+}
 });
 
 
