@@ -760,7 +760,7 @@ header {
 <script>
 let cart=[];
 let historyStack = [];
-const price10=120, price30=240;
+const price10=120, price30=250;
 const priceELF = 280;
 
 function setContent(html, pushHistory = true) {
@@ -914,8 +914,8 @@ function elfFl(){
         ${elfFlavors.map(f => `
             <div class="item">
                 <b>${f}</b>
-                <div class="price">30 ml — 300 грн</div>
-                <button class="add" onclick="add('ELF_LIQ ${f} 30ml',300)">
+                <div class="price">30 ml — 280 грн</div>
+                <button class="add" onclick="add('ELF_LIQ ${f} 30ml',280)">
                     ДОДАТИ ДО КОШИКА
                 </button>
             </div>
